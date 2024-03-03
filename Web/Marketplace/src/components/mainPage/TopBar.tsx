@@ -6,7 +6,10 @@ function TopBar() {
 
     return (
         <div className={'box'}>
-            Hello
+            <div className={'account'}></div>
+            <div className={'search'}>
+                <input className={'inputField'}/>
+            </div>
         </div>
     );
 }

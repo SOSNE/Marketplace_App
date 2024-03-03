@@ -3,6 +3,17 @@
 }
 .box{
     width: 100%;
-    height: 200px;
+    height: 40px;
     background-color: var(--Main);
+}
+.search{
+    padding-top: 4px;
+}
+.inputField{
+    width: 30%;
+    height: 25px;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid black;
+    border-radius: 10px;
 }
