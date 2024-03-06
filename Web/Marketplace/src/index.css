@@ -5,6 +5,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
+
+  --Main: #FFC8DD;
+  --Sec: #FFAFCC;
+  --Blue: #A2D2FF;
+  --LightBlue: #BDE0FE;
+  --BackGround: #CDB4DB;
 }
 body{
   margin: 0 auto;

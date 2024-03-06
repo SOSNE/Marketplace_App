@@ -1,28 +1,28 @@
 import './App.css'
-import TopBar from "./components/mainPage/TopBar.tsx";
+import MainPage from "./components/mainPage/MainPage.tsx";
+import {
+    RouterProvider,
+    createBrowserRouter,
+} from "react-router-dom";
+import AddPage from "./components/addPage/AddPage.tsx";
 
-const colorList = {
-    '--Main': "#FFC8DD",
-    '--Sec': "#FFAFCC",
-    '--Blue': "#A2D2FF",
-    '--LightBlue': "#BDE0FE",
-    '--BackGround': "#CDB4DB",
-}
-
-//Setting colors from Colors.ts to css.
-const root:HTMLElement | null = document.querySelector(':root');
-if(root)
-{
-    for (const [virable,value] of Object.entries(colorList))
+const router = createBrowserRouter([
     {
-        root.style.setProperty(virable, value);
-    }
-}
+        path: "/",
+        element: <MainPage/>,
+    },
+    {
+        path: "add",
+        element: <AddPage/>,
+    },
+]);
+
 
 function App() {
   return (
       <div>
-        <TopBar/>
+
+          <RouterProvider router={router} />
       </div>
   )
 }
