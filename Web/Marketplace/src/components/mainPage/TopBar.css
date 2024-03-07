@@ -4,13 +4,13 @@
     background-color: var(--Main);
 }
 .search{
-    padding-top: 7px;
+    padding-top: 6px;
 }
 .inputField{
     width: 30%;
     height: 35px;
     margin: 0 auto;
     display: block;
-    border: 2px solid black;
+    border: 3px solid var(--Border1);
     border-radius: 10px;
 }
