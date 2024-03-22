@@ -1,20 +1,39 @@
 //import React from 'react';
 //import MainPage from "../mainPage/MainPage.tsx";
 
-type Offer = {
-    name: string,
-    surname: string,
-}
+import {useEffect, useState} from "react";
 
-function Listing({objects}: { objects: Array<Offer> }) {
+
+function Listing() {
+
+    const [offers, setOffers] = useState<Array<Offer>>();
+    type Offer = {
+        ItemName: string,
+        Description: string,
+        Price: number,
+        FirstName: string,
+        Username: string,
+    }
+
+    useEffect(()=>{
+        fetch("http://localhost:8080/offers")
+            .then(res => res.json())
+            //.then(res => )
+            .then(res => setOffers(res))
+    },[])
+    useEffect(()=>{
+        console.log(offers)
+    }, [])
 
     return (
-
         <div>
-            {objects.map((object: Offer) =>(
+            {offers != undefined && offers.map((object: Offer) =>(
                 <div>
-                    {object.name + " "}
-                    {object.surname}
+                    {object.ItemName + " "}
+                    {object.Description + " "}
+                    {object.Price + " "}
+                    {object.Username + " "}
+                    {object.FirstName + " "}
                 </div>
             ))}
         </div>
