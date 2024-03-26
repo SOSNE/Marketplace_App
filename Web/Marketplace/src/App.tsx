@@ -18,13 +18,13 @@ const router = createBrowserRouter([
         element: <AddPage/>,
     },
     {
-        path: 'login',
+        path: "login",
         element: <LoginPage/>,
     },
     {
-        path: 'signin',
+        path: "signin",
         element: <SignIn/>,
-    }
+    },
 ]);
 
 
