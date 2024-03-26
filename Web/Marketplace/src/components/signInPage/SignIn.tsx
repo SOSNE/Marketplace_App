@@ -17,7 +17,7 @@ function SignIn() {
 
 
 
-    const handleSignIn = () => {
+    const HandleSignIn = () => {
         if (passwordsMatch){
             fetch("http://localhost:8080/signIn",{
             method: "POST",
@@ -73,7 +73,7 @@ function SignIn() {
                     }}
                 />
                 {wrongPasswordMessage}
-                <button onClick={handleSignIn}>
+                <button onClick={HandleSignIn}>
                     Sign In
                 </button>
             </div>

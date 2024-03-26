@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const express = require("express");
 const {GetSignInDataFromDatabase, SignInDataBase} = require("../models/DatabaseCommunication");
-const {EMAIL, EMAIL_PASSWORD} = require("../../env")
+const {EMAIL, EMAIL_PASSWORD, SECRET} = require("../../env")
 const router = express.Router()
 router.use(cors())
 
-const SECRET = "ENucETfq44KXsFta7Vp3giOCbKWpeaBv"
+
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 router.post('/',async (req, res)=>{
     const signInDataBaseData = await GetSignInDataFromDatabase()
     const email = req.body.email;
-    const username = req.body.nickName
+    const username = req.body.nickName;
     console.log('Received data:', req.body, signInDataBaseData);
     if(signInDataBaseData.some(obj => obj.Email === email && obj.email_confirmed == 1)){
         return res.status(200).send("user with this email exist");
@@ -30,7 +30,7 @@ router.post('/',async (req, res)=>{
         SignInDataBase(username, email, req.body.password)
 
        jwt.sign({email}, SECRET, { expiresIn: '1h' }, (err, token) => {
-            const url = `http://localhost:5173/confirmation/${token}`;
+            const url = `http://localhost:8080/emailConfirmation/${token}`;
             transporter.sendMail({
                 from: EMAIL,
                 to: email,

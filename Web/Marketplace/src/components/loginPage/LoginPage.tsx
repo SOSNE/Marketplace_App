@@ -1,28 +1,42 @@
-//import React from 'react';
 
-import {useState} from "react";
 
+type LogInnDataType = {
+    email: string;
+    password: string;
+}
+const logInnData: LogInnDataType = {
+    email: "",
+    password: ""
+};
 function LoginPage() {
-    const [nickName, setNickName] = useState<string>();
-    const [email, setemail] = useState<string>();
+    const HandleLogIn = ()=> {
+        fetch("http://localhost:8080/signIn",{
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(logInnData)
+        }).then(()=> console.log("SignIn", logInnData))
+    }
     return (
         <div>
             <div className={"mainBox"}>
                 <p>Login</p>
-                <label>Nick Name</label>
-                <input
-                    type="text"
-                    required
-                    onChange={(e) => setNickName(e.target.value)}
-                />
-                {nickName}
                 <label>Email</label>
                 <input
                     type="text"
                     required
-                    onChange={(e) => setemail(e.target.value)}
+                    onChange={(e) => logInnData.email = e.target.value}
                 />
-                {email}
+
+                <label>Password</label>
+                <input
+                    type="text"
+                    required
+                    onChange={(e) => logInnData.password = e.target.value}
+                />
+                <button onClick={HandleLogIn}>
+                    LogIn
+                </button>
             </div>
         </div>
     );
