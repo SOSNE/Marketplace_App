@@ -5,7 +5,7 @@ const con = mysql.createConnection({
     password: "",
     database: "marketplace"
 });
-
+con.connect();
 function GetOffersDatabase() {
     return new Promise((resolve, reject) => {
         const sql = "SELECT items.ItemName, items.Description, items.Price, userprofiles.FirstName, users.Username FROM users JOIN items ON users.UserID = items.UserID JOIN userprofiles ON users.UserID = userprofiles.UserID;"
@@ -30,7 +30,22 @@ function GetSignInDataFromDatabase() {
         });
     });
 }
+function SignInDataBase(username, email, password) {
+
+        let date = new Date()
+        const month = date.getMonth() + 1; // Month is zero-based, so add 1
+        const day = date.getDate();
+        let dateString = `${date.getFullYear()}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+        const sql = `INSERT INTO users ( Username, Email, Password, RegistrationDate, email_confirmed) VALUES ('${username.toString()}', '${email.toString()}', '${password.toString()}', '${dateString}', 0)`;
+        con.query(sql, function (err, result) {
+            console.log("adding to database values", username, email, password, dateString)
+            if (err) throw err;
+        });
+
+
+}
 module.exports = {
     GetOffersDatabase,
-    GetSignInDataFromDatabase
+    GetSignInDataFromDatabase,
+    SignInDataBase
 };
