@@ -2,24 +2,24 @@ const express = require('express');
 const {LogInDataFromDataBase} = require("../models/DatabaseCommunication");
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
-const {SECRET} = require("../../env")
+const {SECRET_KEY} = require("../../env")
 const {ConfirmEmailToDataBase} = require("../models/DatabaseCommunication");
 const router = express.Router()
 router.use(cors())
 
-router.post('/',  (req, res)=>{
+router.post('/',  async (req, res)=>{
     const email = req.body.email;
     const selectedPassword = req.body.password;
-    const password = LogInDataFromDataBase(email);
-    if (selectedPassword === password){
-        const token = jwt.sign({email}, SECRET, { expiresIn: '30d' })
+    const userData = await LogInDataFromDataBase(email);
+    console.log(email, selectedPassword, userData[0].Password);
+    if (selectedPassword === userData[0].Password){
+        const token = jwt.sign({email}, SECRET_KEY, { expiresIn: '30d' , algorithm: 'RS256'})
         const dataObject ={
             token: token,
-            email: email
-
+            email: email,
+            username: userData[0].Username,
         }
-        res.status(200).send
-    }
-
+        res.status(200).json(dataObject);
+    }else res.status(201).send("error while login");
 });
 module.exports = router;

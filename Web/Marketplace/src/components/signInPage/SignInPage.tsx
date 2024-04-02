@@ -1,6 +1,6 @@
-import {useState} from "react";
+import React, {useState} from "react";
 
-let passwordConfirmationVirable1: string, passwordConfirmationVirable2: string, passwordsMatch:boolean;
+let passwordConfirmationVariable1: string, passwordConfirmationVariable2: string, passwordsMatch:boolean;
 type SignInDataType = {
     nickName: string;
     email: string;
@@ -11,7 +11,7 @@ const signInData: SignInDataType = {
     email: "",
     password: ""
 };
-function SignIn() {
+function SignInPage() {
     //const [nicksName, setNicksName] = useState<string>();
     const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
 
@@ -24,7 +24,7 @@ function SignIn() {
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(signInData)
-        }).then(()=> console.log("SignIn", signInData))}
+        }).then(()=> console.log("SignInS", signInData))}
 
     }
     const handleWrongPasswordConfirmation = (e:React.ChangeEvent<HTMLInputElement> , passwordConfirmationVariable:string) =>{
@@ -58,8 +58,8 @@ function SignIn() {
                     type="text"
                     required
                     onChange={(e) =>{
-                        passwordConfirmationVirable2 = e.target.value;
-                        handleWrongPasswordConfirmation(e, passwordConfirmationVirable1);
+                        passwordConfirmationVariable2 = e.target.value;
+                        handleWrongPasswordConfirmation(e, passwordConfirmationVariable1);
                     }}
                 />
                 <label>Confirm password</label>
@@ -67,9 +67,9 @@ function SignIn() {
                     type="text"
                     required
                     onChange={(e) =>{
-                        passwordConfirmationVirable1 = e.target.value;
+                        passwordConfirmationVariable1 = e.target.value;
                         signInData.password = e.target.value;
-                        handleWrongPasswordConfirmation(e, passwordConfirmationVirable2);
+                        handleWrongPasswordConfirmation(e, passwordConfirmationVariable2);
                     }}
                 />
                 {wrongPasswordMessage}
@@ -80,5 +80,4 @@ function SignIn() {
         </div>
     );
 }
-
-export default SignIn;
+export default SignInPage;

@@ -10,12 +10,12 @@ const logInnData: LogInnDataType = {
 };
 function LoginPage() {
     const HandleLogIn = ()=> {
-        fetch("http://localhost:8080/signIn",{
+        fetch("http://localhost:8080/login",{
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(logInnData)
-        }).then(()=> console.log("SignIn", logInnData))
+        }).then(()=> console.log("LogIn", logInnData))
     }
     return (
         <div>

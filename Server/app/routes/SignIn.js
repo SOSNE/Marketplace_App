@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const express = require("express");
 const {GetSignInDataFromDatabase, SignInDataBase} = require("../models/DatabaseCommunication");
-const {EMAIL, EMAIL_PASSWORD, SECRET} = require("../../env")
+const {EMAIL, EMAIL_PASSWORD, SECRET_KEY} = require("../../env")
 const router = express.Router()
 router.use(cors())
 
@@ -29,7 +29,7 @@ router.post('/',async (req, res)=>{
     }
         SignInDataBase(username, email, req.body.password)
 
-       jwt.sign({email}, SECRET, { expiresIn: '1h' }, (err, token) => {
+       jwt.sign({email}, SECRET_KEY, { expiresIn: '1h', algorithm: 'RS256' }, (err, token) => {
             const url = `http://localhost:8080/emailConfirmation/${token}`;
             transporter.sendMail({
                 from: EMAIL,
