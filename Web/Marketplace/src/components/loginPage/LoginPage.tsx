@@ -1,3 +1,4 @@
+import {AuthHandling, CheckAuth} from "../utilities/AuthHandling.ts";
 
 
 type LogInnDataType = {
@@ -15,7 +16,12 @@ function LoginPage() {
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(logInnData)
-        }).then(()=> console.log("LogIn", logInnData))
+        }).then(res => res.json())
+            .then(res =>{
+                console.log("LogIn", res);
+                AuthHandling(res);
+            })
+
     }
     return (
         <div>
@@ -27,7 +33,6 @@ function LoginPage() {
                     required
                     onChange={(e) => logInnData.email = e.target.value}
                 />
-
                 <label>Password</label>
                 <input
                     type="text"
@@ -36,6 +41,11 @@ function LoginPage() {
                 />
                 <button onClick={HandleLogIn}>
                     LogIn
+                </button>
+                <button onClick={async () =>  {
+                   console.log( await CheckAuth())}
+                }>
+                    auth
                 </button>
             </div>
         </div>

@@ -10,9 +10,10 @@ const offersRoute = require("./routes/Offers")
 const signInRoute = require("./routes/SignIn")
 const emailConfirmation = require("./routes/EmailConfirmation")
 const logIn = require("./routes/LogIn")
+const auth = require("./routes/AuthHandlingCheck")
 app.use('/offers',offersRoute);
 app.use('/signIn',signInRoute);
 app.use('/emailConfirmation',emailConfirmation);
 app.use('/login',logIn);
+app.use('/auth',auth);
 app.listen(8080, ()=> {console.log("server listening")})
-
