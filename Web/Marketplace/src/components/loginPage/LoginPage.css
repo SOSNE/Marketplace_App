@@ -1,0 +1,73 @@
+body
+{
+    height: 100vh;
+}
+h1
+{
+    font-style: normal;
+    text-align: center;
+    margin-top: -10px;
+}
+.mainLoginBox 
+{
+    position: relative;
+    left: 37%;
+    top: 150px;
+    width: 22%;
+    height: 350px;
+    -webkit-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    background-color: var(--Main);
+    border-radius: 3%;
+    padding: 40px;
+    
+}
+.mailLoginInput,.passwordLoginInput
+{
+    width: 80%;
+  padding: 17px 20px;
+  margin: 18px 10%;
+  display: inline-block;
+  border: none;
+  outline: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0%;
+}
+.mailLoginLabel, .passwordLoginLabel
+{
+    margin-left: 10%;
+    margin-top: 10px;   
+}
+.mailLoginInput::placeholder, .passwordLoginInput::placeholder
+{
+    font-size: 16px ;
+    text-align: center;
+    color: black;
+}
+.mailLoginInput:focus, .passwordLoginInput:focus
+{
+    border-bottom: 4px solid var(--Border1);
+    transition: all 0.3s;
+}
+.loginButton
+{
+    position: relative;
+    left: 30%;
+    top: 40px;
+    width: 40%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--LightBlue);
+    font-size: 14px;
+}
+.loginButton:hover
+{
+    background-color: var(--Blue);
+    transition: all 0.4s;
+}
+
