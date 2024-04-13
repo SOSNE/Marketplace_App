@@ -41,7 +41,7 @@ function LoginPage() {
                     required
                     onChange={(e) => logInnData.password = e.target.value}
                 />
-                <button className="loginButton" onChange={HandleLogIn}>
+                <button className="loginButton" onClick={HandleLogIn}>
                     Log In
                 </button>
                 </form>
