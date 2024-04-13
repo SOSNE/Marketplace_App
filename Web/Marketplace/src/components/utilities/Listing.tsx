@@ -21,9 +21,6 @@ function Listing() {
             //.then(res => )
             .then(res => setOffers(res))
     },[])
-    useEffect(()=>{
-        console.log(offers)
-    }, [])
 
     return (
         <div>

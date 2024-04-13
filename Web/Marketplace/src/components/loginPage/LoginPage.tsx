@@ -1,4 +1,5 @@
 import './LoginPage.css'
+import {AuthHandling, CheckAuth} from "../utilities/AuthHandling.ts";
 
 type LogInnDataType = {
     email: string;
@@ -15,7 +16,12 @@ function LoginPage() {
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(logInnData)
-        }).then(()=> console.log("LogIn", logInnData))
+        }).then(res => res.json())
+            .then(res =>{
+                console.log("LogIn", res);
+                AuthHandling(res);
+            })
+
     }
     return (
         
@@ -31,8 +37,6 @@ function LoginPage() {
                     required
                     onChange={(e) => logInnData.email = e.target.value}
                 />
-
-                
                 <input
                     placeholder="Type your password ..."
                     id="password"
@@ -45,6 +49,12 @@ function LoginPage() {
                     Log In
                 </button>
                 </form>
+                <button onClick={async () =>  {
+                   console.log( await CheckAuth())}
+                }>
+                    auth
+                </button>
+
             </div>
     );
 }

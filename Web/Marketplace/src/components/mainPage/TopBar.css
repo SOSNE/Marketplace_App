@@ -1,16 +1,47 @@
-.box{
+.topBar{
     width: 100%;
     height: 55px;
     background-color: var(--Main);
+    position: relative;
 }
 .search{
-    padding-top: 6px;
+    display: inline-block;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.accountButton:hover .userAccountImage{
+    color: var(--Border1);
+}
+.accountButton:active {
+    border-radius: 5px;
+    background-color: var(--Border1);
+}
+.accountButton:active .userAccountImage{
+    color: white;
+}
+.accountButton{
+    display: inline-block;
+    position: absolute;
+    width: auto;
+    background: none;
+    border: none;
+    top: 50%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+}
+.userAccountImage{
+    width: 32px;
+    height: 32px;
+    color: #514b56;
 }
 .inputField{
-    width: 30%;
+    width: 100%;
     height: 35px;
-    margin: 0 auto;
-    display: block;
     border: 3px solid var(--Border1);
     border-radius: 10px;
+    padding: 0;
+    box-sizing: border-box;
 }
