@@ -11,7 +11,7 @@ const signInData: SignInDataType = {
     email: "",
     password: ""
 };
-function SignInPage() {
+function SignUpPage() {
     //const [nicksName, setNicksName] = useState<string>();
     const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
 
@@ -19,12 +19,12 @@ function SignInPage() {
 
     const HandleSignIn = () => {
         if (passwordsMatch){
-            fetch("http://localhost:8080/signIn",{
+            fetch("http://localhost:8080/signup",{
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(signInData)
-        }).then(()=> console.log("SignInS", signInData))}
+        }).then(()=> console.log("SignUp", signInData))}
 
     }
     const handleWrongPasswordConfirmation = (e:React.ChangeEvent<HTMLInputElement> , passwordConfirmationVariable:string) =>{
@@ -80,4 +80,4 @@ function SignInPage() {
         </div>
     );
 }
-export default SignInPage;
+export default SignUpPage;
