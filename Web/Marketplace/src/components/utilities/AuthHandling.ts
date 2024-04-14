@@ -1,4 +1,5 @@
 import Cookies from 'universal-cookie';
+import {NavigateFunction } from "react-router-dom";
 const cookies = new Cookies();
 
 type userDataObjectType = {
@@ -28,4 +29,9 @@ export async function CheckAuth(){
         body: JSON.stringify(jsonObject)
     }).then(res => res.json()).then(res => response = res)
     return response
+}
+export async function HandleAuthNavigate(navigateHook: NavigateFunction,to:string, authFailedDestination = "login"){
+    if( await CheckAuth()){
+        navigateHook(to);
+    }else navigateHook(authFailedDestination);
 }
