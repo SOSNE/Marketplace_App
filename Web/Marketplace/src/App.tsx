@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import AddPage from "./components/addPage/AddPage.tsx";
 import LoginPage from "./components/loginPage/LoginPage.tsx";
-import SignInS from "./components/signInPage/SignInPage.tsx";
+import SignUpPage from "./components/signUpPage/SignUpPage.tsx";
 import UserInfoPage from "./components/userInfoPage/UserInfoPage.tsx";
 
 const router = createBrowserRouter([
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
         element: <LoginPage/>,
     },
     {
-        path: "signin",
-        element: <SignInS/>,
+        path: "signup",
+        element: <SignUpPage/>,
     },
     {
         path: "userinfo",

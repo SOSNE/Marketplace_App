@@ -2,7 +2,7 @@ const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const express = require("express");
-const {GetSignInDataFromDatabase, SignInDataBase} = require("../models/DatabaseCommunication");
+const {GetSignUpDataFromDatabase, SignUpDataBase} = require("../models/DatabaseCommunication");
 const {EMAIL, EMAIL_PASSWORD, SECRET_KEY} = require("../../env")
 const router = express.Router()
 router.use(cors())
@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post('/',async (req, res)=>{
-    const signInDataBaseData = await GetSignInDataFromDatabase()
+    const signInDataBaseData = await GetSignUpDataFromDatabase()
     const email = req.body.email;
     const username = req.body.nickName;
     console.log('Received data:', req.body, signInDataBaseData);
@@ -27,7 +27,7 @@ router.post('/',async (req, res)=>{
     if(signInDataBaseData.some(obj => obj.Username === username && obj.email_confirmed == 1)){
         return res.status(200).send("user with this nickName exist");
     }
-        SignInDataBase(username, email, req.body.password)
+        SignUpDataBase(username, email, req.body.password)
 
        jwt.sign({email}, SECRET_KEY, { expiresIn: '1h', algorithm: 'RS256' }, (err, token) => {
             const url = `http://localhost:8080/emailConfirmation/${token}`;

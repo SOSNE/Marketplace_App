@@ -7,12 +7,12 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json());
 
 const offersRoute = require("./routes/Offers")
-const signInRoute = require("./routes/SignIn")
+const signUpRoute = require("./routes/SignUp")
 const emailConfirmation = require("./routes/EmailConfirmation")
 const logIn = require("./routes/LogIn")
 const auth = require("./routes/AuthHandlingCheck")
 app.use('/offers',offersRoute);
-app.use('/signIn',signInRoute);
+app.use('/signup',signUpRoute);
 app.use('/emailConfirmation',emailConfirmation);
 app.use('/login',logIn);
 app.use('/auth',auth);
