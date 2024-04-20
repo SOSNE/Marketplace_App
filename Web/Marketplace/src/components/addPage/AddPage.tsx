@@ -1,28 +1,49 @@
-import {useState} from "react";
+//import {useState} from "react";
 import "./AddPage.css";
+import Resizer from 'react-image-file-resizer';
+import {CheckAuth, GetUserInfo} from "../utilities/AuthHandling.ts";
+
 type NewOfferDataType = {
     productName: string;
     description: string;
     photoString: string;
     price: number;
+    userEmail: string;
 }
 const NewOfferData: NewOfferDataType = {
     productName: "",
     description: "",
     photoString: "",
     price: 0,
+    userEmail: GetUserInfo().email,
 };
 function AddPage() {
-    const [img , setImg] = useState<string>();
-    const HandleNewFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //const [img , setImg] = useState<string>();
+    const HandleNewFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        const reader = new FileReader();
         if(file) {
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                NewOfferData.photoString = reader.result as string;
-            };
+            Resizer.imageFileResizer(
+                file,
+                2000,
+                2000,
+                'JPEG',
+                50,
+                0,
+                (uri) => {
+                    NewOfferData.photoString = uri as string;
+                },
+                'base64'
+            );
         }
+    }
+    const handleOfferSubmit = async () => {
+        if (await CheckAuth())
+            fetch("http://localhost:8080/newoffer", {
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(NewOfferData)
+        }).then(res => res.json())
     }
 
     return (
@@ -46,12 +67,9 @@ function AddPage() {
                     type='number'
                     onChange={(e) => NewOfferData.price = parseFloat(e.target.value)}
                 />
-                <button onClick={() => {
-                    console.log(NewOfferData);
-                    setImg(NewOfferData.photoString);
-                }}>Submit
+                <button onClick={handleOfferSubmit}>Submit
                 </button>
-            <img className={"addImage"} src={img} alt="Decoded"/>
+            {/*<img className={"addImage"} src={img} alt="Decoded"/>*/}
         </div>
     );
 }
