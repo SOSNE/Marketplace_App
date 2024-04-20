@@ -1,16 +1,22 @@
 const express = require('express');
 const cors = require("cors");
 const {AddNewOfferToDatabase} = require("../../app/models/DatabaseCommunication");
+const jwt = require("jsonwebtoken");
+const {PUBLIC_KEY} = require("../../env");
 
 const router = express.Router()
 router.use(cors())
 
 router.post('/',async (req, res)=>{
     console.log(req.body)
-    //email, price, description, productName, photoString
     const newOfferData = req.body;
-   await AddNewOfferToDatabase(newOfferData.userEmail, newOfferData.price,
-        newOfferData.description, newOfferData.productName, newOfferData.photoString);
-    res.status(200).send({text:"ok"})
+    try{
+        const email= jwt.verify(newOfferData.token, PUBLIC_KEY);
+        await AddNewOfferToDatabase(email.email, newOfferData.price,
+            newOfferData.description, newOfferData.productName, newOfferData.photoString);
+    }catch(err){
+        throw err;
+    }
+    res.status(200).send({status:true})
 })
 module.exports = router;

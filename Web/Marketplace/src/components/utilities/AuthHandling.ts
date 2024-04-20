@@ -36,6 +36,10 @@ export async function HandleAuthNavigate(navigateHook: NavigateFunction,to:strin
         navigateHook(to);
     }else navigateHook(authFailedDestination);
 }
-export function GetUserInfo(){
-    return cookies.get('userInfoStorage')
+export function GetUserInfo(prefix:string) {
+    if (prefix == null || prefix == "info"){
+        return cookies.get('userInfoStorage')
+    }else if (prefix == "token"){
+        return cookies.get('authToken')
+    }
 }

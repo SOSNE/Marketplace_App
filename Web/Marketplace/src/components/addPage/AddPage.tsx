@@ -8,14 +8,14 @@ type NewOfferDataType = {
     description: string;
     photoString: string;
     price: number;
-    userEmail: string;
+    token: string;
 }
 const NewOfferData: NewOfferDataType = {
     productName: "",
     description: "",
     photoString: "",
     price: 0,
-    userEmail: GetUserInfo().email,
+    token: GetUserInfo("token")
 };
 function AddPage() {
     //const [img , setImg] = useState<string>();
