@@ -11,7 +11,6 @@ function Listing() {
         ItemName: string,
         Description: string,
         Price: number,
-        FirstName: string,
         Username: string,
     }
 
@@ -30,7 +29,6 @@ function Listing() {
                     {object.Description + " "}
                     {object.Price + " "}
                     {object.Username + " "}
-                    {object.FirstName + " "}
                 </div>
             ))}
         </div>

@@ -18,20 +18,28 @@ export function AuthHandling(userDataObject: userDataObjectType) {
         cookies.set('userInfoStorage', JSON.stringify(userInfoObject), { path: '/', httpOnly: false, secure: false });
     }
 }
-let response: boolean;
-export async function CheckAuth(){
+
+export async function CheckAuth(): Promise<boolean>{
     const jsonObject =  { text:  cookies.get('authToken') };
 
-   await fetch("http://localhost:8080/auth", {
+    const response = await fetch("http://localhost:8080/auth", {
         method: "POST",
         mode: "cors",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(jsonObject)
-    }).then(res => res.json()).then(res => response = res)
-    return response
+    });
+    const data = await response.json();
+    return data
 }
 export async function HandleAuthNavigate(navigateHook: NavigateFunction,to:string, authFailedDestination = "login"){
     if( await CheckAuth()){
         navigateHook(to);
     }else navigateHook(authFailedDestination);
+}
+export function GetUserInfo(prefix:string) {
+    if (prefix == null || prefix == "info"){
+        return cookies.get('userInfoStorage')
+    }else if (prefix == "token"){
+        return cookies.get('authToken')
+    }
 }

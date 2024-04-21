@@ -18,16 +18,20 @@ function LoginPage() {
             body: JSON.stringify(logInnData)
         }).then(res => res.json())
             .then(res =>{
-                console.log("LogIn", res);
-                AuthHandling(res);
+                if (res.text == "error while login"){
+                    console.log(res.text);
+                    //do something after failed login
+                }else {
+                    console.log("LogIn", res);
+                    AuthHandling(res);
+                    //do something after successful login
+                }
             })
-
     }
     return (
         
             <div className={"mainLoginBox"}>
-                <form>
-                
+
                 <h1>Login</h1>
                 <input
                     placeholder="Type your mail ..."
@@ -48,7 +52,7 @@ function LoginPage() {
                 <button className="loginButton" onClick={HandleLogIn}>
                     Log In
                 </button>
-                </form>
+
                 <button onClick={async () =>  {
                    console.log( await CheckAuth())}
                 }>

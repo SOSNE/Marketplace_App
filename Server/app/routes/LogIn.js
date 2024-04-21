@@ -21,7 +21,7 @@ router.post('/',  async (req, res)=>{
         }
         res.status(200).json(dataObject);
     }else {
-        res.status(200).send("error while login");
+        res.status(200).send({text:"error while login"});
         console.log(email, selectedPassword);
     }
 });

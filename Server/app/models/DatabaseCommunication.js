@@ -5,10 +5,10 @@ const con = mysql.createConnection({
     password: "",
     database: "marketplace"
 });
-con.connect();
+
 function GetOffersDatabase() {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT items.ItemName, items.Description, items.Price, userprofiles.FirstName, users.Username FROM users JOIN items ON users.UserID = items.UserID JOIN userprofiles ON users.UserID = userprofiles.UserID;"
+        const sql = "SELECT items.ItemName, items.Description, items.Price, users.Username FROM users JOIN items ON users.UserID = items.UserID;"
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
@@ -31,7 +31,6 @@ function GetSignInDataFromDatabase() {
     });
 }
 function SignInDataBase(username, email, password) {
-
         let date = new Date()
         const month = date.getMonth() + 1; // Month is zero-based, so add 1
         const day = date.getDate();
@@ -62,6 +61,31 @@ function LogInDataFromDataBase(email){
             }
         });
     });
+
+}
+
+function AddNewOfferToDatabase(email, price, description, productName, photoString){
+
+    con.query(`SELECT UserID FROM users WHERE Email = '${email}';`, function (err, result) {
+        if (err) throw err;
+        const UserID = result[0].UserID;
+
+        con.query(`INSERT INTO items (UserID, ItemName, Description, Price) 
+                   VALUES (${UserID}, '${productName.toString()}', '${description.toString()}', ${price});`, function (err) {
+            if (err) throw err;
+        });
+
+        con.query(`SELECT LAST_INSERT_ID() AS ItemID`, function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            const ItemID = result[0].ItemID;
+            con.query(`INSERT INTO photos (ItemId, UserId, PhotoBlob)
+                       VALUES (${ItemID}, ${UserID}, '${photoString}');`, function (err) {
+                if (err) throw err;
+                console.log("done");
+            });
+        });
+    });
 }
 
 module.exports = {
@@ -69,5 +93,6 @@ module.exports = {
     GetSignInDataFromDatabase,
     SignInDataBase,
     ConfirmEmailToDataBase,
-    LogInDataFromDataBase
+    LogInDataFromDataBase,
+    AddNewOfferToDatabase
 };
