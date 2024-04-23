@@ -5,6 +5,7 @@ const router = express.Router()
 router.use(cors())
 router.get('/',  async (req, res)=>{
         const data = await GetOffersDatabase();
+        //console.log(data);
         res.status(200).json(data);
     }
 )

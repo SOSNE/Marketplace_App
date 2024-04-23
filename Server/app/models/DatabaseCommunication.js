@@ -6,17 +6,38 @@ const con = mysql.createConnection({
     database: "marketplace"
 });
 
-function GetOffersDatabase() {
-    return new Promise((resolve, reject) => {
-        const sql = "SELECT items.ItemName, items.Description, items.Price, users.Username FROM users JOIN items ON users.UserID = items.UserID;"
-        con.query(sql, function (err, result) {
+async function GetOffersDatabase() {
+    const itemData = new Promise((resolve, reject) => {
+        const sql =  `SELECT items.ItemId, items.ItemName, items.Description, items.Price, users.Username FROM users JOIN items ON users.UserID = items.UserID;`
+         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
             } else {
                 resolve(result);
             }
         });
-    });
+    })
+    const finalData = new Promise(async (resolve, reject) => {
+        const promises = [];
+        const asyncItemData = await  itemData;
+        for (let i = 0; i < asyncItemData.length; i++) {
+            promises.push(new Promise((innerResolve, innerReject) => {
+                const ItemId = asyncItemData[i].ItemId;
+                con.query(`SELECT PhotoId FROM photos WHERE ItemId = ${ItemId};`, function (err, result) {
+                    if (err) {
+                        innerReject(err);
+                    } else {
+                        asyncItemData[i].PhotoId = result;
+                        innerResolve();
+                    }
+                });
+            }));
+        }
+        await Promise.all(promises);
+        resolve(asyncItemData);
+
+    })
+    return await finalData;
 }
 function GetSignInDataFromDatabase() {
     return new Promise((resolve, reject) => {
@@ -87,6 +108,18 @@ function AddNewOfferToDatabase(email, price, description, productName, photoStri
         });
     });
 }
+function GetPhotoFromDataBase(PhotoId){
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT PhotoBlob FROM photos WHERE PhotoId = '${PhotoId}';`;
+        con.query(sql, function (err, result) {
+            if (err) {
+                reject(err);
+            }else {
+                resolve(result);
+            }
+        })
+    })
+}
 
 module.exports = {
     GetOffersDatabase,
@@ -94,5 +127,6 @@ module.exports = {
     SignInDataBase,
     ConfirmEmailToDataBase,
     LogInDataFromDataBase,
-    AddNewOfferToDatabase
+    AddNewOfferToDatabase,
+    GetPhotoFromDataBase
 };

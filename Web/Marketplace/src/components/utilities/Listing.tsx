@@ -12,15 +12,15 @@ function Listing() {
         Description: string,
         Price: number,
         Username: string,
+        PhotoId: number;
     }
 
     useEffect(()=>{
         fetch("http://localhost:8080/offers")
             .then(res => res.json())
-            //.then(res => )
             .then(res => setOffers(res))
+        console.log('i fire once');
     },[])
-
     return (
         <div>
             {offers != undefined && offers.map((object: Offer) =>(
