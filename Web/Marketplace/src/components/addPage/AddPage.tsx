@@ -27,7 +27,7 @@ function AddPage() {
                 2000,
                 2000,
                 'JPEG',
-                50,
+                30,
                 0,
                 (uri) => {
                     NewOfferData.photoString = uri as string;

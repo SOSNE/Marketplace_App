@@ -1,4 +1,6 @@
 const mysql = require('mysql');
+const fs = require('fs');
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -109,13 +111,15 @@ function AddNewOfferToDatabase(email, price, description, productName, photoStri
     });
 }
 function GetPhotoFromDataBase(PhotoId){
-    return new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
         const sql = `SELECT PhotoBlob FROM photos WHERE PhotoId = '${PhotoId}';`;
-        con.query(sql, function (err, result) {
+        con.query(sql, async function (err, result) {
             if (err) {
                 reject(err);
             }else {
-                resolve(result);
+                const buffer = Buffer.from(result[0].PhotoBlob, 'binary');
+                const base64String = buffer.toString('utf-8');
+                resolve(base64String);
             }
         })
     })
