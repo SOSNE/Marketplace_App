@@ -16,7 +16,7 @@ function Listing() {
             .then(res => res.json())
             .then(res => setOffers(res))
         console.log('i fire once');
-    },[])
+    },[]);
 
     return  (
         <div>

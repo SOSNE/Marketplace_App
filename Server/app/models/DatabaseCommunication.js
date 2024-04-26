@@ -100,7 +100,6 @@ function AddNewOfferToDatabase(email, price, description, productName, photoStri
 
         con.query(`SELECT LAST_INSERT_ID() AS ItemID`, function (err, result) {
             if (err) throw err;
-            console.log(result);
             const ItemID = result[0].ItemID;
             con.query(`INSERT INTO photos (ItemId, UserId, PhotoBlob)
                        VALUES (${ItemID}, ${UserID}, '${photoString}');`, function (err) {
