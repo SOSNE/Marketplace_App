@@ -1,0 +1,13 @@
+h1{
+    margin-top: 10px;
+    text-align: center;
+}
+.mainUserInfoPageBox
+{
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    height: 40%;
+    width: 40%;
+    background-color: var(--Main);
+}

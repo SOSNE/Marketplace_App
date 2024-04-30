@@ -18,9 +18,10 @@ function GetOffersDatabase() {
         });
     });
 }
+
 function GetSignInDataFromDatabase() {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT Username, Email, email_confirmed FROM users;"
+        const sql = "SELECT Username, Email, email_confirmed FROM users ;"
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
@@ -29,6 +30,7 @@ function GetSignInDataFromDatabase() {
             }
         });
     });
+   
 }
 function SignInDataBase(username, email, password) {
         let date = new Date()
@@ -52,16 +54,16 @@ function ConfirmEmailToDataBase(email){
 
 function LogInDataFromDataBase(email){
     return new Promise((resolve, reject) => {
-        const sql = `SELECT Password, Username FROM users WHERE Email = '${email}';`
+        const sql = `SELECT users.Password, users.Username ,userprofiles.firstname , userprofiles.lastname , userprofiles.gender , userprofiles.dateofbirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
             } else {
+                console.log(result);
                 resolve(result);
             }
         });
     });
-
 }
 
 function AddNewOfferToDatabase(email, price, description, productName, photoString){
