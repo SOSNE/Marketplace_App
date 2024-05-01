@@ -10,14 +10,14 @@ import {useState} from 'react';
 function MainPage() {
     const navigate  = useNavigate();
     const  handleAuthNavigate = async ()=> await HandleAuthNavigate(navigate,"add");
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState<string>("");
     const handleChildData = (data: string) => {
         setInputValue(data);
     };
+
     return (
         <div>
             <TopBar getData={handleChildData}/>
-            {inputValue}
             <div className={"offersBox"}>
                 <Listing prop={inputValue}/>
             </div>

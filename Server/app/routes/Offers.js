@@ -28,33 +28,24 @@ function generateSimilarWords(word) {
             similarWords.push(newWord);
         }
     }
-
     return similarWords;
 }
 
 
 async function ProcessIncomingSearch(inputValue){
-    const search = inputValue.search.prop;
+    const search = inputValue.search;
     if(search === ""){
         return await GetOffersDatabase();
     }else {
         const data = await GetOffersDatabase();
-        const keyWords = generateSimilarWords(search);
-        //keyWords.forEach((word) => {console.log(word);})
-        console.log(keyWords);
+        const keyWords = generateSimilarWords(search)
         return data.filter((object)=>{
             return keyWords.includes(object.ItemName.substring(0, search.length));
         });
-        // return data.filter((object)=>{return keyWords.forEach((word)=>{
-        //     return (object.ItemName.substring(0, word.length) === word)
-        // })
-        // });
     }
 }
 router.post('/',  async (req, res)=>{
-    console.log(req.body);
     const data = await ProcessIncomingSearch(req.body);
-    console.log(data);
     if(data != null){
         const promises = data.map(async (item) => {
             item.PhotoString = await GetPhotoFromDataBase(item.PhotoId[0].PhotoId);

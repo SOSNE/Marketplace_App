@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 
-function Listing(prop:string) {
+
+function Listing({prop}: {prop: string}) {
     const [offers, setOffers] = useState<Array<Offer>>();
     type Offer = {
         ItemName: string,
@@ -10,13 +11,6 @@ function Listing(prop:string) {
         PhotoId: number,
         PhotoString:string
     }
-
-    // useEffect(()=>{
-    //     fetch("http://localhost:8080/offers")
-    //         .then(res => res.json())
-    //         .then(res => setOffers(res))
-    //     console.log('i fire once');
-    // },[]);
 
     useEffect(() => {
         console.log(prop);
