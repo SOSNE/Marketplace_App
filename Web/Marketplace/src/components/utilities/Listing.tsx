@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-function Listing() {
+function Listing(prop:string) {
     const [offers, setOffers] = useState<Array<Offer>>();
     type Offer = {
         ItemName: string,
@@ -11,13 +11,23 @@ function Listing() {
         PhotoString:string
     }
 
-    useEffect(()=>{
-        fetch("http://localhost:8080/offers")
-            .then(res => res.json())
-            .then(res => setOffers(res))
-        console.log('i fire once');
-    },[]);
+    // useEffect(()=>{
+    //     fetch("http://localhost:8080/offers")
+    //         .then(res => res.json())
+    //         .then(res => setOffers(res))
+    //     console.log('i fire once');
+    // },[]);
 
+    useEffect(() => {
+        console.log(prop);
+        fetch("http://localhost:8080/offers",{
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"search":prop})
+        }).then(res => res.json())
+            .then(data => setOffers(data));
+    }, [prop]);
     return  (
         <div>
             {offers !== undefined && offers.map((object: Offer, index: number) => (
