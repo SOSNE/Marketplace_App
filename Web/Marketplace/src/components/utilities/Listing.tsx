@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import "./Listing.css";
 
 function Listing() {
     const [offers, setOffers] = useState<Array<Offer>>();
@@ -21,12 +22,11 @@ function Listing() {
     return  (
         <div>
             {offers !== undefined && offers.map((object: Offer, index: number) => (
-                <div key={index}>
-                    <img src={object.PhotoString} alt={`Photo ${index}`}/>
-                    {object.ItemName + " "}
-                    {object.Description + " "}
-                    {object.Price + " "}
-                    {object.Username + " "}
+                <div key={index} className="offerBox">
+                    <img className="image" src={object.PhotoString} alt={`Photo ${index}`}/>
+                    <h3 className="itemName">{object.ItemName + " "}</h3>
+                    <p className="price">{object.Price + "$ "}</p>
+               
                 </div>
             ))}
         </div>
