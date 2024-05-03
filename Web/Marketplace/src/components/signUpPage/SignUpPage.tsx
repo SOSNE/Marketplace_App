@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import './SignUpPage.css';
 let passwordConfirmationVariable1: string, passwordConfirmationVariable2: string, passwordsMatch:boolean;
 type SignUpDataType = {
     nickName: string;
@@ -39,32 +39,36 @@ function SignUpPage() {
 
     return (
         <div>
-            <div className={"mainBox"}>
-                <p>SignIn</p>
-                <label>Nick name</label>
+            <div className={"signUpMainBox"}>
+                <h1>SignIn</h1>
                 <input
+                    className="nicknameSingUpInput"
                     type="text"
+                    placeholder="nickname..."
                     required
                     onChange={(e) => signUpData.nickName = e.target.value}
                 />
-                <label>Email</label>
                 <input
+                    className="mailSignUpInput"
+                    placeholder="email..."
                     type="text"
                     required
                     onChange={(e) => signUpData.email = e.target.value}
                 />
-                <label>Password</label>
                 <input
-                    type="text"
+                    className="passwordSingUpInput"
+                    type="password"
+                    placeholder="password..."
                     required
                     onChange={(e) =>{
                         passwordConfirmationVariable2 = e.target.value;
                         handleWrongPasswordConfirmation(e, passwordConfirmationVariable1);
                     }}
                 />
-                <label>Confirm password</label>
                 <input
-                    type="text"
+                    className="passwordSingUpInput"
+                    type="password"
+                    placeholder="confirm password..."
                     required
                     onChange={(e) =>{
                         passwordConfirmationVariable1 = e.target.value;
@@ -73,7 +77,7 @@ function SignUpPage() {
                     }}
                 />
                 {wrongPasswordMessage}
-                <button onClick={HandleSignUp}>
+                <button onClick={HandleSignUp} className="signUpButton">
                     Sign In
                 </button>
             </div>
