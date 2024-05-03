@@ -30,8 +30,6 @@ function generateSimilarWords(word) {
     }
     return similarWords;
 }
-
-
 async function ProcessIncomingSearch(inputValue){
     const search = inputValue.search;
     if(search === ""){

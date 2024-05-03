@@ -1,8 +1,8 @@
-//import {useState} from "react";
+import {useState} from "react";
 import "./AddPage.css";
 import Resizer from 'react-image-file-resizer';
 import {CheckAuth, GetUserInfo} from "../utilities/AuthHandling.ts";
-
+        
 type NewOfferDataType = {
     productName: string;
     description: string;
@@ -18,7 +18,6 @@ const NewOfferData: NewOfferDataType = {
     token: GetUserInfo("token")
 };
 function AddPage() {
-    //const [img , setImg] = useState<string>();
     const HandleNewFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if(file) {
@@ -69,7 +68,6 @@ function AddPage() {
                 />
                 <button onClick={handleOfferSubmit}>Submit
                 </button>
-            {/*<img className={"addImage"} src={img} alt="Decoded"/>*/}
         </div>
     );
 }

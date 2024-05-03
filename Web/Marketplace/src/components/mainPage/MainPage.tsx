@@ -24,6 +24,8 @@ function MainPage() {
             <button className={"addButton"} onClick={handleAuthNavigate}>
                 <IoAddCircleOutline className={"addButtonImage"}/>
             </button>
+            <footer className="fotter"><p>@cukier prosty</p></footer>
+           
         </div>
     );
 }

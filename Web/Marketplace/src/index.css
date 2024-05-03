@@ -1,17 +1,19 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, Inter, system-ui, Avenir,Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
 
-  --Main: #FFC8DD;
-  --Sec: #FFAFCC;
+  --Main: #66789d;
+  --Sec: #A9B4CB; 
   --Blue: #A2D2FF;
+  --Third: #8899BB;
   --LightBlue: #BDE0FE;
-  --BackGround: #CDB4DB;
-  --Border1: #81738a;
+  --BackGround: #F3F4F7;
+  --Border1: #0B0D10;
+
 }
 body{
   margin: 0 auto;

@@ -1,5 +1,7 @@
 import './LoginPage.css'
 import {AuthHandling, CheckAuth} from "../utilities/AuthHandling.ts";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 type LogInnDataType = {
     email: string;
@@ -10,6 +12,8 @@ const logInnData: LogInnDataType = {
     password: ""
 };
 function LoginPage() {
+    const navigate = useNavigate();
+    const [checklog,setchecklog] = useState("");
     const HandleLogIn = ()=> {
         fetch("http://localhost:8080/login",{
             method: "POST",
@@ -20,11 +24,11 @@ function LoginPage() {
             .then(res =>{
                 if (res.text == "error while login"){
                     console.log(res.text);
-                    //do something after failed login
+                    setchecklog("failed login");
                 }else {
                     console.log("LogIn", res);
                     AuthHandling(res);
-                    //do something after successful login
+                    navigate("/");
                 }
             })
     }
@@ -58,6 +62,7 @@ function LoginPage() {
                 }>
                     auth
                 </button>
+                <p> {checklog} </p>
 
             </div>
     );

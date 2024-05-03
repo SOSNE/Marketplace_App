@@ -1,0 +1,73 @@
+body
+{
+    height: 100vh;
+}
+h1
+{
+    font-style: normal;
+    text-align: center;
+    margin-top: -15px;
+}
+.signUpMainBox 
+{
+    text-align: center;
+    position: relative;
+    left: 36%;
+    top: 120px;
+    width: 24%;
+    height: 460px;
+    -webkit-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
+    background-color: var(--Main);
+    border-radius: 3%;
+    padding: 40px;
+    
+}
+.mailSignUpInput,.passwordSingUpInput,.nicknameSingUpInput
+{
+    width: 84%;
+  padding: 16px 20px;
+  margin: 15px 8%;
+  display: inline-block;
+  border: none;
+  outline: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: var(--Main);
+  opacity: 2;
+  border: 1px solid black;
+  border-radius: 9px;
+}
+
+
+.mailSignUpInput::placeholder, .passwordSingUpInput::placeholder,.nicknameSingUpInput::placeholder
+{
+    opacity: 0.8s;
+    font-size: 16px ;
+    text-align: center;
+    color: black;
+}
+.mailLoginInput:focus, .passwordLoginInput:focus
+{
+    border-bottom: 4px solid var(--Border1);
+    transition: all 0.3s;
+}
+.signUpButton
+{
+    position: absolute;
+    left: 30%;
+    bottom: 60px;
+    width: 40%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--LightBlue);
+    font-size: 14px;
+}
+.signUpButton:hover
+{
+    background-color: var(--Blue);
+    transition: all 0.4s;
+}
+
