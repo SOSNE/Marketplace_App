@@ -1,22 +1,45 @@
 const mysql = require('mysql');
+const fs = require('fs');
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "marketplace"
 });
-con.connect();
-function GetOffersDatabase() {
-    return new Promise((resolve, reject) => {
-        const sql = "SELECT items.ItemName, items.Description, items.Price, userprofiles.FirstName, users.Username FROM users JOIN items ON users.UserID = items.UserID JOIN userprofiles ON users.UserID = userprofiles.UserID;"
-        con.query(sql, function (err, result) {
+
+async function GetOffersDatabase() {
+    const itemData = new Promise((resolve, reject) => {
+        const sql =  `SELECT items.ItemId, items.ItemName, items.Description, items.Price, users.Username FROM users JOIN items ON users.UserID = items.UserID;`
+         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
             } else {
                 resolve(result);
             }
         });
-    });
+    })
+    const finalData = new Promise(async (resolve, reject) => {
+        const promises = [];
+        const asyncItemData = await  itemData;
+        for (let i = 0; i < asyncItemData.length; i++) {
+            promises.push(new Promise((innerResolve, innerReject) => {
+                const ItemId = asyncItemData[i].ItemId;
+                con.query(`SELECT PhotoId FROM photos WHERE ItemId = ${ItemId};`, function (err, result) {
+                    if (err) {
+                        innerReject(err);
+                    } else {
+                        asyncItemData[i].PhotoId = result;
+                        innerResolve();
+                    }
+                });
+            }));
+        }
+        await Promise.all(promises);
+        resolve(asyncItemData);
+
+    })
+    return await finalData;
 }
 function GetSignInDataFromDatabase() {
     return new Promise((resolve, reject) => {
@@ -31,7 +54,6 @@ function GetSignInDataFromDatabase() {
     });
 }
 function SignInDataBase(username, email, password) {
-
         let date = new Date()
         const month = date.getMonth() + 1; // Month is zero-based, so add 1
         const day = date.getDate();
@@ -62,6 +84,44 @@ function LogInDataFromDataBase(email){
             }
         });
     });
+
+}
+
+function AddNewOfferToDatabase(email, price, description, productName, photoString){
+
+    con.query(`SELECT UserID FROM users WHERE Email = '${email}';`, function (err, result) {
+        if (err) throw err;
+        const UserID = result[0].UserID;
+
+        con.query(`INSERT INTO items (UserID, ItemName, Description, Price) 
+                   VALUES (${UserID}, '${productName.toString()}', '${description.toString()}', ${price});`, function (err) {
+            if (err) throw err;
+        });
+
+        con.query(`SELECT LAST_INSERT_ID() AS ItemID`, function (err, result) {
+            if (err) throw err;
+            const ItemID = result[0].ItemID;
+            con.query(`INSERT INTO photos (ItemId, UserId, PhotoBlob)
+                       VALUES (${ItemID}, ${UserID}, '${photoString}');`, function (err) {
+                if (err) throw err;
+                console.log("done");
+            });
+        });
+    });
+}
+function GetPhotoFromDataBase(PhotoId){
+   return new Promise((resolve, reject) => {
+        const sql = `SELECT PhotoBlob FROM photos WHERE PhotoId = '${PhotoId}';`;
+        con.query(sql, async function (err, result) {
+            if (err) {
+                reject(err);
+            }else {
+                const buffer = Buffer.from(result[0].PhotoBlob, 'binary');
+                const base64String = buffer.toString('utf-8');
+                resolve(base64String);
+            }
+        })
+    })
 }
 
 module.exports = {
@@ -69,5 +129,7 @@ module.exports = {
     GetSignInDataFromDatabase,
     SignInDataBase,
     ConfirmEmailToDataBase,
-    LogInDataFromDataBase
+    LogInDataFromDataBase,
+    AddNewOfferToDatabase,
+    GetPhotoFromDataBase
 };

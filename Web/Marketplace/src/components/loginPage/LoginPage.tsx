@@ -29,7 +29,6 @@ function LoginPage() {
                     console.log("LogIn", res);
                     AuthHandling(res);
                     navigate("/");
-                    
                 }
             })
     }
