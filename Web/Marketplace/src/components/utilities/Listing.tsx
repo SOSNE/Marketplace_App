@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import "./Listing.css";
 
-function Listing() {
+
+function Listing({prop}: {prop: string}) {
     const [offers, setOffers] = useState<Array<Offer>>();
     type Offer = {
         ItemName: string,
@@ -11,14 +12,16 @@ function Listing() {
         PhotoId: number,
         PhotoString:string
     }
-
-    useEffect(()=>{
-        fetch("http://localhost:8080/offers")
-            .then(res => res.json())
-            .then(res => setOffers(res))
-        console.log('i fire once');
-    },[]);
-
+  
+    useEffect(() => {
+        fetch("http://localhost:8080/offers",{
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"search":prop})
+        }).then(res => res.json())
+            .then(data => setOffers(data));
+    }, [prop]);
     return  (
         <div>
             {offers !== undefined && offers.map((object: Offer, index: number) => (
@@ -26,7 +29,7 @@ function Listing() {
                     <img className="image" src={object.PhotoString} alt={`Photo ${index}`}/>
                     <h3 className="itemName">{object.ItemName + " "}</h3>
                     <p className="price">{object.Price + "$ "}</p>
-               
+
                 </div>
             ))}
         </div>

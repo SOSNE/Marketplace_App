@@ -4,7 +4,15 @@ import { FiUser } from "react-icons/fi";
 import {HandleAuthNavigate} from "../utilities/AuthHandling.ts";
 import {useNavigate} from "react-router-dom";
 
-function TopBar() {
+interface TopBarProps {
+    getData: (data: string) => void;
+}
+
+function TopBar(props:TopBarProps) {
+    const inputDataToParent = (data:string) => {
+        console.log(data)
+        props.getData(data);
+    };
 
     const navigate  = useNavigate();
     const  handleAuthNavigate = async ()=> await HandleAuthNavigate(navigate,"userinfo");
@@ -14,7 +22,10 @@ function TopBar() {
                 <FiUser className={'userAccountImage'} />
             </button>
             <div className={'search'}>
-                <input className={'inputField'}/>
+                <input
+                    className={'inputField'}
+                    onChange={(e) => inputDataToParent(e.target.value)}
+                />
             </div>
         </div>
     );
