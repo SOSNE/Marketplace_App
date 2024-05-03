@@ -12,7 +12,6 @@ const signUpData: SignUpDataType = {
     password: ""
 };
 function SignUpPage() {
-    //const [nicksName, setNicksName] = useState<string>();
     const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
 
 
@@ -39,6 +38,7 @@ function SignUpPage() {
 
     return (
         <div>
+
             <div className={"signUpMainBox"}>
                 <h1>SignIn</h1>
                 <input
