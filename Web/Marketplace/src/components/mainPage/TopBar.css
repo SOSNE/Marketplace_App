@@ -3,6 +3,7 @@
     height: 60px;
     background-color: var(--Main);
     position: relative;
+    margin-bottom: 2%;
 }
 .search{
     display: inline-block;
