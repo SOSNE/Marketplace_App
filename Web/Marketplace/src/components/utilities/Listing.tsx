@@ -1,10 +1,13 @@
 import {useEffect, useState} from "react";
 import "./Listing.css";
+import { useNavigate } from "react-router-dom";
 
 
 function Listing({prop}: {prop: string}) {
     const [offers, setOffers] = useState<Array<Offer>>();
+    const navigate  = useNavigate();
     type Offer = {
+        ItemId: number;
         ItemName: string,
         Description: string,
         Price: number,
@@ -22,14 +25,14 @@ function Listing({prop}: {prop: string}) {
         }).then(res => res.json())
             .then(data => setOffers(data));
     }, [prop]);
+    console.log(offers);
     return  (
         <div>
             {offers !== undefined && offers.map((object: Offer, index: number) => (
-                <div key={index} className="offerBox">
+                <div key={index} className="offerBox" onClick={() => navigate("offer", { state: { offerData: object } })}>
                     <img className="image" src={object.PhotoString} alt={`Photo ${index}`}/>
                     <h3 className="itemName">{object.ItemName + " "}</h3>
                     <p className="price">{object.Price + "$ "}</p>
-
                 </div>
             ))}
         </div>
