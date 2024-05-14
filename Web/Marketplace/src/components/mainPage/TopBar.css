@@ -47,3 +47,27 @@
     box-sizing: border-box;
     background-color: var(--BackGround);
 }
+.buttons{
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    white-space: nowrap
+}
+.button{
+    background: none;
+    border: none;
+}
+.buttonImage{
+    width: 32px;
+    height: 32px;
+    color: var(--Sec);
+}
+.logButtons{
+    border-radius: 10px;
+    border: none;
+    background-color: var(--Sec);
+    color: var(--Main);
+    height: 30px;
+}

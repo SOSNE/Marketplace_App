@@ -18,10 +18,10 @@ router.post('/',  async (req, res)=>{
             token: token,
             email: email,
             username: userData[0].Username,
-            firstname: userData[0].firstname,
-            lastname: userData[0].lastname,
-            gender: userData[0].gender,
-            dateOfBirth: userData[0].dateOfBirth,
+            firstname: userData[0].FirstName,
+            lastname: userData[0].LastName,
+            gender: userData[0].Gender,
+            dateOfBirth: userData[0].DateOfBirth,
         }
         res.status(200).json(dataObject);
     }else {

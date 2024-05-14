@@ -10,7 +10,7 @@ function UserInfoPage() {
    
     return (  
         <div>
-        <h1>Welcom {getInfo.username}</h1>
+        <h1>Welcome {getInfo.username}</h1>
         <div className="mainUserInfoPageBox">
            <div className="inf">email: {getInfo.email}</div>
            <div className="inf">firstname : {getInfo.firstname}</div>
