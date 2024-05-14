@@ -77,7 +77,7 @@ function ConfirmEmailToDataBase(email){
 
 function LogInDataFromDataBase(email){
     return new Promise((resolve, reject) => {
-        const sql = `SELECT users.Password, users.Username ,userprofiles.firstname , userprofiles.lastname , userprofiles.gender , userprofiles.dateofbirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
+        const sql = `SELECT users.Password, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
