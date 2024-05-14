@@ -64,7 +64,7 @@
     height: 32px;
     color: var(--Sec);
 }
-.logOut{
+.logButtons{
     border-radius: 10px;
     border: none;
     background-color: var(--Sec);

@@ -37,8 +37,7 @@ export async function CheckAuth(): Promise<boolean>{
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(jsonObject)
     });
-    const data = await response.json();
-    return data
+    return await response.json();
 }
 export async function HandleAuthNavigate(navigateHook: NavigateFunction,to:string, authFailedDestination = "login"){
     if( await CheckAuth()){
