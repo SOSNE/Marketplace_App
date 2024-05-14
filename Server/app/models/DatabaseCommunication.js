@@ -42,7 +42,7 @@ async function GetOffersDatabase() {
     return await finalData;
 }
 
-function GetSignInDataFromDatabase() {
+function GetSignUpDataFromDatabase() {
     return new Promise((resolve, reject) => {
         const sql = "SELECT Username, Email, email_confirmed FROM users ;"
         con.query(sql, function (err, result) {
@@ -55,7 +55,7 @@ function GetSignInDataFromDatabase() {
     });
    
 }
-function SignInDataBase(username, email, password) {
+function SignUpDataBase(username, email, password) {
         let date = new Date()
         const month = date.getMonth() + 1; // Month is zero-based, so add 1
         const day = date.getDate();
@@ -128,8 +128,8 @@ function GetPhotoFromDataBase(PhotoId){
 
 module.exports = {
     GetOffersDatabase,
-    GetSignInDataFromDatabase,
-    SignInDataBase,
+    GetSignUpDataFromDatabase,
+    SignUpDataBase,
     ConfirmEmailToDataBase,
     LogInDataFromDataBase,
     AddNewOfferToDatabase,
