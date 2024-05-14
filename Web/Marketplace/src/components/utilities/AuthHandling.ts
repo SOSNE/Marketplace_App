@@ -52,3 +52,7 @@ export function GetUserInfo(prefix:string) {
         return cookies.get('authToken')
     }
 }
+export function LogOut(){
+    cookies.remove('userInfoStorage');
+    cookies.remove('authToken');
+}

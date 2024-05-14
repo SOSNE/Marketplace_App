@@ -1,8 +1,8 @@
 //import React from 'react';
 import './TopBar.css'
 import { FiUser } from "react-icons/fi";
-import {HandleAuthNavigate} from "../utilities/AuthHandling.ts";
-import {useNavigate} from "react-router-dom";
+import {CheckAuth, HandleAuthNavigate, LogOut} from "../utilities/AuthHandling.ts";
+import { useNavigate } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import { GrInstall } from "react-icons/gr";
 import { CiSquareQuestion } from "react-icons/ci";
@@ -19,10 +19,16 @@ function TopBar(props:TopBarProps) {
     };
 
     const navigate  = useNavigate();
-    const  handleAuthNavigate = async ()=> await HandleAuthNavigate(navigate,"userinfo");
+    const  handleAuthNavigateUserInfo = async ()=> await HandleAuthNavigate(navigate,"userinfo");
+    const  handleAuthNavigateLogIn = async ()=> {
+        if(!await CheckAuth()){
+            navigate('login');
+        }
+    };
+
     return (
         <div className={'topBar'}>
-            <button className={'accountButton'} onClick={handleAuthNavigate}>
+            <button className={'accountButton'} onClick={handleAuthNavigateUserInfo}>
                 <FiUser className={'userAccountImage'}/>
             </button>
             <div className={'search'}>
@@ -37,6 +43,8 @@ function TopBar(props:TopBarProps) {
                 <button className={'button yourOffer'}><GrInstall className={'buttonImage'}/></button>
                 <button className={'button about'}><CiSquareQuestion className={'buttonImage'}/>
                 </button>
+                <button className={'logOut'} onClick={LogOut}>Log out</button>
+                <button className={'logOut'} onClick={handleAuthNavigateLogIn}>Log in</button>
             </div>
         </div>
     );

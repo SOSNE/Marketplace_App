@@ -50,16 +50,24 @@
 .buttons{
     position: absolute;
     top: 50%;
-    left: 87%;
+    left: 85%;
     transform: translate(-50%, -50%);
     display: flex;
+    white-space: nowrap
 }
 .button{
     background: none;
     border: none;
 }
 .buttonImage{
-    width: 100%;
+    width: 32px;
     height: 32px;
     color: var(--Sec);
+}
+.logOut{
+    border-radius: 10px;
+    border: none;
+    background-color: var(--Sec);
+    color: var(--Main);
+    height: 30px;
 }
