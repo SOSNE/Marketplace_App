@@ -62,12 +62,13 @@ h1
     height: 40px;
     border-radius: 25px;
     border: none;
-    background-color: var(--LightBlue);
+    background-color: var(--Third);
     font-size: 14px;
+    transition: all 0.4s;
 }
 .loginButton:hover
 {
-    background-color: var(--Blue);
+    background-color: var(--Fourth);
     transition: all 0.4s;
 }
 

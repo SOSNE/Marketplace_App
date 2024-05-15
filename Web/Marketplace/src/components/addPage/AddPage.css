@@ -1,41 +1,134 @@
-image{
-    width: 400px ;
-    height: 400px;
+.containerAddPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
-.fileInput::placeholder
-{
-    width: 200px;
-    height: 200px;
-}
-.offerInputBox
-{
-    width: 50%;
-    border: 1px dodgerblue dotted;
-    margin: 0 auto;
-}
-.inputBox
-{width: 100%;
-height: 20vh;
-align-items: left; 
-margin-top: 3%;
-text-align: left;
-border: 1px solid black;
 
+.mainInputBox {
+    display: flex;
+    width: 80vw;
+    aspect-ratio: 16 / 9;
+    padding: 10px;
+    background-color: var(--Sec);
+    box-sizing: border-box;
+}
+
+.photoInputBox {
+    width: 60%;
+    margin-right: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+.offerInput
+{
+    width: 90%;
+    margin-left: 0%;
+    padding: 16px 20px;
+    outline: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 0.2px solid black  ;
+    background-color: var(--Third);
+    opacity: 2;
+    border-radius: 9px;
+    color: black;
+    margin-bottom: 2%;
+    
+}
+.descriptionAddPage
+{
+
+    height: 60%;
+    word-break: break-word;
+    text-wrap: wrap;
+    white-space: pre-line;
+    resize: none;
+}
+
+
+.textInputBox {
+    margin-top: 2%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.inputBox {
+    padding-left: 10px;
+    height: 10vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1em;
+    flex: 1;
+    box-sizing: border-box;
+    word-break: break-word;
+    line-height: 0.1; 
 }
 p
 {
     font-size: small;
 }
-.offerinput
+.imageAddPage
 {
-  width: 100%;
-  padding: 16px 20px;  
-  border: none;
-  outline: 0;
-  font-size: 16px;
-  box-sizing: border-box;
-  background-color: var(--Main);
-  opacity: 2;
-  border: 1px solid black;
-  border-radius: 6px;
+    height: 80%;
+    width: 100%;
+    margin-top: 2%;
+    object-fit: cover;
 }
+
+
+
+
+
+
+.buttonAddPage
+{
+    width: 50%;
+    height: 8%;
+     margin-left: 25%;
+     border-radius: 25px;
+    border: none;
+    background-color: var(--Third);
+    font-size: 14px;
+    transition: all 0.4s;
+    margin-top: 20%;
+    margin-bottom: 10%;
+}
+.buttonAddPage:hover
+{
+    background-color: var(--Fourth);
+}  
+  input[type="file"]{
+    display: none;
+  }
+
+  label{
+    width: 20%;
+    height: 4%;
+    padding-top: 1%;
+     border-radius: 25px;
+    border: none;
+    background-color: var(--Third);
+    font-size: 14px;
+    transition: all 0.4s;
+    cursor:pointer;
+    text-align: center;
+  }
+  label:hover
+  {
+    background-color: var(--Fourth);
+  }

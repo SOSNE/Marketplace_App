@@ -69,6 +69,8 @@
    top: 13vh;
    width: 80%;
    text-align: center;
+   word-wrap: break-word;
+   overflow-wrap: break-word;
 }
 hr
 {
