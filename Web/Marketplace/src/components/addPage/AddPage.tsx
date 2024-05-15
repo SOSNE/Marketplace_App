@@ -46,26 +46,39 @@ function AddPage() {
     }
 
     return (
-        <div>
+        <div className="offerInputBox">
+                <div className="inputBox"><h3>Item Name</h3>
+                <p>Write down what you want to sell :</p>
                 <input
+                className="offerinput"
                     type="text"
                     placeholder="Product Name"
                     onChange={(e) => NewOfferData.productName = e.target.value}
                 />
+                </div>
+                <div className="inputBox">
+                    <h3>Description</h3>
+                    <p>Write down about item you want to sell :</p>
                 <input
+                className="offerinput"
                     type="text"
                     placeholder="Description"
                     onChange={(e) => NewOfferData.description = e.target.value}
-                />
+                /></div>
+                <div className="inputBox"><p></p>
                 <input
                     type="file"
+                    className="fileInput"
                     placeholder="Image"
                     onChange={HandleNewFile}
-                />
-                <input
+                /></div>
+               <div className="inputBox"><p></p> <input
+                className="offerinput"
                     type='number'
                     onChange={(e) => NewOfferData.price = parseFloat(e.target.value)}
-                />
+                /></div>
+                
+               
                 <button onClick={handleOfferSubmit}>Submit
                 </button>
         </div>
