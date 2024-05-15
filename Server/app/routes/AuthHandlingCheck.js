@@ -8,7 +8,7 @@ router.post('/',(req, res)=>{
     const token = req.body.text;
 
     try{
-        console.log(token);
+        //console.log(token);
         jwt.verify(token, PUBLIC_KEY);
         res.status(200).send(true)
     }catch (error){

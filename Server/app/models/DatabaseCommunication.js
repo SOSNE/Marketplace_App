@@ -91,38 +91,32 @@ function ConfirmEmailToDataBase(email){
 
 function LogInDataFromDataBase(email){
     return new Promise((resolve, reject) => {
-        console.log("logInDataFromDataBase", email);
-        const sql = `SELECT users.Password, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
+        //console.log("logInDataFromDataBase", email);
+        const sql = `SELECT users.UserID, users.Password, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
             } else {
-                console.log(result);
+                //console.log(result);
                 resolve(result);
             }
         });
     });
 }
 
-function AddNewOfferToDatabase(email, price, description, productName, photoString){
-
-    con.query(`SELECT UserID FROM users WHERE Email = '${email}';`, function (err, result) {
-        if (err) throw err;
-        const UserID = result[0].UserID;
-
-        con.query(`INSERT INTO items (UserID, ItemName, Description, Price) 
+function AddNewOfferToDatabase(UserID, price, description, productName, photoString){
+    con.query(`INSERT INTO items (UserID, ItemName, Description, Price) 
                    VALUES (${UserID}, '${productName.toString()}', '${description.toString()}', ${price});`, function (err) {
-            if (err) throw err;
-        });
+        if (err) throw err;
+    });
 
-        con.query(`SELECT LAST_INSERT_ID() AS ItemID`, function (err, result) {
-            if (err) throw err;
-            const ItemID = result[0].ItemID;
-            con.query(`INSERT INTO photos (ItemId, UserId, PhotoBlob)
+    con.query(`SELECT LAST_INSERT_ID() AS ItemID`, function (err, result) {
+        if (err) throw err;
+        const ItemID = result[0].ItemID;
+        con.query(`INSERT INTO photos (ItemId, UserId, PhotoBlob)
                        VALUES (${ItemID}, ${UserID}, '${photoString}');`, function (err) {
-                if (err) throw err;
-                console.log("done");
-            });
+            if (err) throw err;
+            //console.log("done");
         });
     });
 }
@@ -141,6 +135,9 @@ function GetPhotoFromDataBase(PhotoId){
     })
 }
 
+function GetUserInfoFromDataBase(email){
+
+}
 module.exports = {
     GetOffersDatabase,
     GetSignUpDataFromDatabase,

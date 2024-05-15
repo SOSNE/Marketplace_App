@@ -1,4 +1,3 @@
-import {useState} from "react";
 import "./AddPage.css";
 import Resizer from 'react-image-file-resizer';
 import {CheckAuth, GetUserInfo} from "../utilities/AuthHandling.ts";
