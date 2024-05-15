@@ -2,6 +2,7 @@
 import { GetUserInfo } from "../utilities/AuthHandling";
 import './UserInfoPage.css'
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function UserInfoPage() {
     const [blankField, setBlankField] = useState<boolean>();
@@ -13,7 +14,7 @@ function UserInfoPage() {
             }
         })
     })
-
+    const navigate  = useNavigate();
     return (
         <div>
             <h1>Welcome {getInfo.username}</h1>
@@ -22,7 +23,7 @@ function UserInfoPage() {
                 <div className="inf">firstname: {getInfo.firstname}</div>
                 <div className="inf">lastname: {getInfo.lastname}</div>
                 <div className="inf">gender: {getInfo.gender}</div>
-                {blankField? <button>Add more information</button> : null}
+                {blankField? <button onClick={()=> navigate('/adduserinfo')}>Add more information</button> : null}
             </div>
         </div>
     );
