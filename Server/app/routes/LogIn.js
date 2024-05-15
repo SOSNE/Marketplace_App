@@ -11,6 +11,7 @@ router.post('/',  async (req, res)=>{
     const email = req.body.email;
     const selectedPassword = req.body.password;
     const userData = await LogInDataFromDataBase(email);
+    console.log(userData.length);
     if (userData.length >0 && selectedPassword === userData[0].Password){
         console.log(email, selectedPassword, userData[0].Password);
         const token = jwt.sign({email}, SECRET_KEY, { expiresIn: '30d' , algorithm: 'RS256'})

@@ -29,7 +29,7 @@ router.post('/',async (req, res)=>{
     }
         SignUpDataBase(username, email, req.body.password)
 
-       jwt.sign({email}, SECRET_KEY, { expiresIn: '1h', algorithm: 'RS256' }, (err, token) => {
+        jwt.sign({email}, SECRET_KEY, { expiresIn: '1h', algorithm: 'RS256' }, (err, token) => {
             const url = `http://localhost:8080/emailConfirmation/${token}`;
             transporter.sendMail({
                 from: EMAIL,

@@ -55,16 +55,30 @@ function GetSignUpDataFromDatabase() {
     });
    
 }
+
+function AddUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, Address = null, City = null, PostalCode = null, Country = null, PhoneNumber = null){
+    const sql = `INSERT INTO userprofiles( UserID, FirstName, LastName, DateOfBirth, Gender, Address, City, PostalCode, Country, PhoneNumber) VALUES (${UserId}, ${FirstName}, ${LastName}, ${DateOfBirth}, ${Gender}, ${Address}, ${City}, ${PostalCode}, ${Country}, ${PhoneNumber})`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+    });
+}
+
 function SignUpDataBase(username, email, password) {
-        let date = new Date()
-        const month = date.getMonth() + 1; // Month is zero-based, so add 1
-        const day = date.getDate();
-        let dateString = `${date.getFullYear()}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
-        const sql = `INSERT INTO users ( Username, Email, Password, RegistrationDate, email_confirmed) VALUES ('${username.toString()}', '${email.toString()}', '${password.toString()}', '${dateString}', 0)`;
-        con.query(sql, function (err, result) {
-            console.log("adding to database values", username, email, password, dateString)
-            if (err) throw err;
-        });
+    let date = new Date()
+    const month = date.getMonth() + 1; // Month is zero-based, so add 1
+    const day = date.getDate();
+    let dateString = `${date.getFullYear()}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+    const sql = `INSERT INTO users ( Username, Email, Password, RegistrationDate, email_confirmed) VALUES ('${username.toString()}', '${email.toString()}', '${password.toString()}', '${dateString}', 0)`;
+    con.query(sql, function (err, result) {
+        console.log("adding to database values", username, email, password, dateString)
+        if (err) throw err;
+    });
+    con.query(`SELECT LAST_INSERT_ID() AS UserId`, function (err, result) {
+        if (err) throw err;
+        const UserId = result[0].UserId;
+        console.log(UserId)
+        AddUserInfo(UserId);
+    });
 }
 
 function ConfirmEmailToDataBase(email){
@@ -77,6 +91,7 @@ function ConfirmEmailToDataBase(email){
 
 function LogInDataFromDataBase(email){
     return new Promise((resolve, reject) => {
+        console.log("logInDataFromDataBase", email);
         const sql = `SELECT users.Password, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.Email = '${email}';`
         con.query(sql, function (err, result) {
             if (err) {
