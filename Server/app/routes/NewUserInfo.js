@@ -3,20 +3,22 @@ const {GetUserInfoFromDataBase, AddNewOfferToDatabase} = require("../models/Data
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const {PUBLIC_KEY} = require("../../env");
+const {UpdateUserInfo} = require("../../app/models/DatabaseCommunication");
 
 const router = express.Router()
 router.use(cors())
 
 router.post('/',async (req, res)=>{
-    const tokenData = req.body;
-
+    console.log(req.body);
+    const tokenData = req.body.token;
+    const userInfoData = req.body.infoData;
     try{
-        const UserId = jwt.verify(tokenData.token, PUBLIC_KEY).UserId;
+        const UserId = jwt.verify(tokenData, PUBLIC_KEY).UserId;
         console.log(UserId);
-        const userInfoData = await GetUserInfoFromDataBase(UserId)
-        console.log(userInfoData);
-        res.status(200).send({userInfoData})
+        UpdateUserInfo(UserId, userInfoData.FirstName, userInfoData.LastName, userInfoData.DateOfBirth, userInfoData.Gender, userInfoData.PhoneNumber)
+        res.status(200).send(true)
     }catch(err){
+        res.status(200).send(false)
         throw err;
     }
 });

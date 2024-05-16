@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 // type InfoType = {
 //     [key: string]: string | null;
@@ -13,13 +14,14 @@ import { useLocation } from "react-router-dom";
 function AddUserInfo() {
     const {state} = useLocation();
     const { infoData } = state;
+    const cookies = new Cookies();
     const SetNewUserData = ()=>{
         console.log(infoData);
-        fetch("http://localhost:8080/adduserdata",{
+        fetch("http://localhost:8080/adduserinfo",{
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(infoData)
+            body: JSON.stringify({infoData:infoData, token:cookies.get("authToken")})
         }).then(res => res.json())
     }
 
@@ -55,6 +57,13 @@ function AddUserInfo() {
                     type="text"
                     required
                     onChange={(e) => infoData.Gender = e.target.value}
+                />)}
+            {infoData.PhoneNumber != undefined ? (<div>{infoData.PhoneNumber}</div>)
+                : (<input
+                    placeholder="Type your phone number ..."
+                    type="text"
+                    required
+                    onChange={(e) => infoData.PhoneNumber = e.target.value}
                 />)}
             <button onClick={SetNewUserData}>Submit</button>
         </div>

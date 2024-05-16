@@ -4,13 +4,13 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 type InfoType = {
-    [key: string]: string | null;
+    [key: string]: string | number | null;
     Email: string,
     Username: string,
     FirstName: string,
     LastName: string,
     Gender: string,
-    DateOfBirth: string
+    PhoneNumber: number
 }
 
 function UserInfoPage() {
@@ -23,7 +23,7 @@ function UserInfoPage() {
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ token:  cookies.get('authToken') })
+            body: JSON.stringify({ token: cookies.get('authToken') })
         }).then(res => res.json())
             .then(data => setUserInfoData(data.userInfoData[0]))
             .then(()=>{
@@ -51,8 +51,10 @@ function UserInfoPage() {
                         <div className="inf">firstname: {userInfoData.FirstName}</div>
                         <div className="inf">lastname: {userInfoData.LastName}</div>
                         <div className="inf">gender: {userInfoData.Gender}</div>
+                        <div className="inf">phone number: {userInfoData.PhoneNumber}</div>
                         {blankField ? (
-                            <button onClick={() => navigate('/adduserinfo', { state: { infoData: userInfoData } })}>Add more information</button>
+                            <button onClick={() => navigate('/adduserinfo', {state: {infoData: userInfoData}})}>Add more
+                                information</button>
                         ) : null}
                     </div>
                 </>
@@ -60,6 +62,5 @@ function UserInfoPage() {
         </div>
     );
 }
-
 
 export default UserInfoPage;

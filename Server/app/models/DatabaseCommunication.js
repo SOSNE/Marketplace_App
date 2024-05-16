@@ -53,15 +53,53 @@ function GetSignUpDataFromDatabase() {
             }
         });
     });
-   
 }
 
-function AddUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, Address = null, City = null, PostalCode = null, Country = null, PhoneNumber = null){
-    const sql = `INSERT INTO userprofiles( UserID, FirstName, LastName, DateOfBirth, Gender, Address, City, PostalCode, Country, PhoneNumber) VALUES (${UserId}, ${FirstName}, ${LastName}, ${DateOfBirth}, ${Gender}, ${Address}, ${City}, ${PostalCode}, ${Country}, ${PhoneNumber})`;
+function AddUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, PhoneNumber = null, Address = null, City = null, PostalCode = null, Country = null){
+    const sql = `INSERT INTO 
+                    userprofiles (UserID, FirstName, LastName, DateOfBirth, Gender, Address, City, PostalCode, Country, PhoneNumber) 
+                VALUES (${UserId}, ${FirstName == null ? FirstName : `'${FirstName}'`}, 
+${LastName == null ? LastName : `'${LastName}'`}, 
+${DateOfBirth == null ? DateOfBirth : `'${DateOfBirth}'`}, 
+${Gender == null ? Gender : `'${Gender}'`}, 
+${Address == null ? Address : `'${Address}'`}, 
+${City == null ? City : `'${City}'`}, 
+${PostalCode == null ? PostalCode : `'${PostalCode}'`}, 
+${Country == null ? Country : `'${Country}'`}, 
+${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`})`;
     con.query(sql, function (err, result) {
         if (err) throw err;
     });
 }
+
+function UpdateUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, PhoneNumber = null, Address = null, City = null, PostalCode = null, Country = null){
+    const sql = `UPDATE userprofiles set
+                    FirstName = ${FirstName == null ? FirstName : `'${FirstName}'`},
+                    LastName = ${LastName == null ? LastName : `'${LastName}'`},
+                    DateOfBirth = ${DateOfBirth == null ? DateOfBirth : `'${DateOfBirth}'`},
+                    Gender = ${Gender == null ? Gender : `'${Gender}'`},
+                    Address = ${Address == null ? Address : `'${Address}'`},
+                    City = ${City == null ? City : `'${City}'`},
+                    PostalCode = ${PostalCode == null ? PostalCode : `'${PostalCode}'`},
+                    Country = ${Country == null ? Country : `'${Country}'`},
+                    PhoneNumber = ${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`}
+                    WHERE 
+                    UserID = ${UserId}`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+    });
+}
+// INSERT INTO
+// userprofiles( UserID, FirstName, LastName, DateOfBirth, Gender, Address, City, PostalCode, Country, PhoneNumber)
+// VALUES (${UserId}, ${FirstName == null ? FirstName : `'${FirstName}'`},
+// ${LastName == null ? LastName : `'${LastName}'`},
+// ${DateOfBirth == null ? DateOfBirth : `'${DateOfBirth}'`},
+// ${Gender == null ? Gender : `'${Gender}'`},
+// ${Address == null ? Address : `'${Address}'`},
+// ${City == null ? City : `'${City}'`},
+// ${PostalCode == null ? PostalCode : `'${PostalCode}'`},
+// ${Country == null ? Country : `'${Country}'`},
+// ${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`})
 
 function SignUpDataBase(username, email, password) {
     let date = new Date()
@@ -138,7 +176,7 @@ function GetPhotoFromDataBase(PhotoId){
 function GetUserInfoFromDataBase(UserId){
     return new Promise((resolve, reject) => {
         //console.log("logInDataFromDataBase", email);
-        const sql = `SELECT users.Email, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.UserID = '${UserId}';`
+        const sql = `SELECT users.Email, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.PhoneNumber FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.UserID = '${UserId}';`
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
@@ -157,5 +195,7 @@ module.exports = {
     LogInDataFromDataBase,
     AddNewOfferToDatabase,
     GetPhotoFromDataBase,
-    GetUserInfoFromDataBase
+    GetUserInfoFromDataBase,
+    AddUserInfo,
+    UpdateUserInfo
 };
