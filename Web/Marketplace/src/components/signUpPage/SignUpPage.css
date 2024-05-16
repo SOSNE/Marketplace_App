@@ -6,7 +6,7 @@ h1
 {
     font-style: normal;
     text-align: center;
-    margin-top: -15px;
+    margin-top: 1%;
 }
 .signUpMainBox 
 {
@@ -22,6 +22,7 @@ h1
     background-color: var(--Main);
     border-radius: 3%;
     padding: 40px;
+    text-align: center;
     
 }
 .mailSignUpInput,.passwordSingUpInput,.nicknameSingUpInput
@@ -34,10 +35,11 @@ h1
   outline: 0;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: var(--Main);
+  background-color: var(--Third);
   opacity: 2;
   border: 1px solid black;
   border-radius: 9px;
+  margin-bottom: 5%;
 }
 
 
@@ -48,26 +50,50 @@ h1
     text-align: center;
     color: black;
 }
-.mailLoginInput:focus, .passwordLoginInput:focus
-{
-    border-bottom: 4px solid var(--Border1);
-    transition: all 0.3s;
-}
+
 .signUpButton
 {
     position: absolute;
     left: 30%;
-    bottom: 60px;
+    bottom: 80px;
     width: 40%;
     height: 40px;
     border-radius: 25px;
     border: none;
-    background-color: var(--LightBlue);
+    background-color: var(--Third);
     font-size: 14px;
 }
 .signUpButton:hover
 {
-    background-color: var(--Blue);
+    background-color: var(--Fourth);
     transition: all 0.4s;
+}
+
+.wrongPassMessage
+{
+    margin-top: 14%;
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
+.goLoginPage
+{
+    width:40%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: blue;
+    transition: all 0.4s;
+    margin-top: 10%;
+    font-size: 16px;
+
+}
+.goLoginPage:hover
+{
+    cursor: pointer;
+    color: blueviolet;
 }
 

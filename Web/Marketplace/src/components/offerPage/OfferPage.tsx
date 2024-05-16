@@ -14,35 +14,32 @@ function OfferPage() {
     };
     
     return (
-        <div>
-                
-        <div className="container">
-        
-            <div className="offerImageBox">   
-            <button className="backButton"onClick={goBack}>&larr;Go Back</button>   
-                <img className="offerImage" src={offerData.PhotoString} alt=""/>
-               
-            </div>
-             
-              
-               <div className="offerInfoBox">
-                    <h2>{offerData.ItemName}</h2>
-                    <p>price: ${offerData.Price}</p>
-                    <p>Seller: {offerData.Username} </p>     
+        <div className="containerOfferPage">
+            <div className="mainOfferPageBox">
+                <div className="photoOfferPageBox">
+                    <img className="imageOfferPage" src={offerData.PhotoString} alt=""/>   
                 </div>
-                <hr></hr>
-                <div className="offerDescriptionBox">
-                
-                <h2>Description: </h2>
-                {offerData.Description}
-                <p>Offer number: {offerData.ItemId}</p> 
-                </div> 
-                
-                
-              
+            <div className="textOfferPageBox">
+                    <button className="buttonOfferPage"onClick={goBack}>&#10005;</button> 
+                <div className="offerPageBox">
+                    <h3>Item Name</h3>
+                    <p>{offerData.ItemName}</p>
+               
+                    <h3>Seller</h3>
+                    <p>{offerData.Username}</p>
+                    <h3>Price</h3>
+                    <p>{offerData.Price}</p>
+                 </div>
+
+            <div className="offerPageDescriptionBox">
+                <h3>Description</h3>
+                <p>{offerData.Description}</p>
             </div>
-            <footer className="fotter"><p>@cukier prosty</p></footer>
+               
         </div>
+        </div> 
+        <footer className="fotterOfferPage"><p>@cukier prosty</p></footer>   
+    </div>
     );
 }
 

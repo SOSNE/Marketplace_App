@@ -21,43 +21,38 @@ h1
     background-color: var(--Main);
     border-radius: 3%;
     padding: 40px;
+    align-items: center;
     
 }
 .mailLoginInput,.passwordLoginInput
 {
-    width: 80%;
-  padding: 17px 20px;
-  margin: 18px 10%;
-  display: inline-block;
-  border: none;
-  outline: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: transparent;
-  border-bottom: 1px solid black;
-  border-radius: 0%;
+    width: 84%;
+    padding: 16px 20px;
+    margin: 15px 8%;
+    display: inline-block;
+    border: none;
+    outline: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--Third);
+    opacity: 2;
+    border: 1px solid black;
+    border-radius: 9px;
 }
-.mailLoginLabel, .passwordLoginLabel
-{
-    margin-left: 10%;
-    margin-top: 10px;   
-}
+
 .mailLoginInput::placeholder, .passwordLoginInput::placeholder
 {
+    opacity: 0.8s;
     font-size: 16px ;
     text-align: center;
     color: black;
 }
-.mailLoginInput:focus, .passwordLoginInput:focus
-{
-    border-bottom: 4px solid var(--Border1);
-    transition: all 0.3s;
-}
+
 .loginButton
 {
     position: relative;
     left: 30%;
-    top: 40px;
+    top: 38px;
     width: 40%;
     height: 40px;
     border-radius: 25px;
@@ -71,4 +66,29 @@ h1
     background-color: var(--Fourth);
     transition: all 0.4s;
 }
-
+.checkLogLoginPage
+{
+    margin-top: 20%;
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
+.goSignUp
+{
+    width:40%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: blue;
+    transition: all 0.4s;
+    margin-bottom: 2%;
+    font-size: 14px;
+}
+.goSignUp:hover
+{
+    cursor: pointer;
+    color: blueviolet;
+}

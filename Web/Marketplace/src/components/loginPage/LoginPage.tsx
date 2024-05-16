@@ -14,6 +14,10 @@ const logInnData: LogInnDataType = {
 function LoginPage() {
     const navigate = useNavigate();
     const [checklog,setchecklog] = useState("");
+    const goToSignUp = ()=> {
+
+        navigate("/signup");
+    };
     const HandleLogIn = ()=> {
         fetch("http://localhost:8080/login",{
             method: "POST",
@@ -56,13 +60,8 @@ function LoginPage() {
                 <button className="loginButton" onClick={HandleLogIn}>
                     Log In
                 </button>
-
-                <button onClick={async () =>  {
-                   console.log( await CheckAuth())}
-                }>
-                    auth
-                </button>
-                <p> {checklog} </p>
+                <p className="checkLogLoginPage"> {checklog} </p>
+                <p onClick={goToSignUp} className="goSignUp">Sign Up</p>
 
             </div>
     );

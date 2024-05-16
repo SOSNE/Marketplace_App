@@ -57,7 +57,7 @@ function AddPage() {
                         className="fileInput"
                         placeholder="Image"
                         onChange={HandleNewFile}
-
+                        required
                         /> </label>
                    
                         {imageURI && <img src={imageURI} alt="Uploaded" className="imageAddPage"/>}
@@ -70,6 +70,7 @@ function AddPage() {
                             className="offerInput"
                             type="text"
                             placeholder="Product Name"
+                            required
                             onChange={(e) => NewOfferData.productName = e.target.value}
                             />
                         </div>
@@ -82,6 +83,7 @@ function AddPage() {
                                     className="offerInput"
                                     type='number'
                                     placeholder="price"
+                                    required
                                     onChange={(e) => NewOfferData.price = parseFloat(e.target.value)}
                             />
                         </div>
@@ -94,9 +96,10 @@ function AddPage() {
                                 className="offerInput descriptionAddPage"
                                 cols={2}
                                 rows={5}
-                                maxLength={255}
+                                maxLength={1024}
                                 name="Text" 
                                 placeholder="Description"
+                                required
                                 onChange={(e) => NewOfferData.description = e.target.value}>
 
                                 </textarea>
