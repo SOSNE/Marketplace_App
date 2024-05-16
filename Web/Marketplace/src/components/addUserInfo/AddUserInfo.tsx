@@ -29,7 +29,7 @@ function AddUserInfo() {
                 : (<input
                     placeholder="Type your first name ..."
                     type="text"
-                    required
+
                     onChange={(e) => infoData.FirstName = e.target.value}
                 />)}
 
@@ -37,7 +37,7 @@ function AddUserInfo() {
                 : (<input
                     placeholder="Type your last name ..."
                     type="text"
-                    required
+
                     onChange={(e) => infoData.LastName = e.target.value}
                 />)}
 
@@ -50,10 +50,19 @@ function AddUserInfo() {
                 />)}
             {infoData.PhoneNumber != undefined ? (<div>{infoData.PhoneNumber}</div>)
                 : (<input
-                    placeholder="Type your phone number ..."
-                    type="text"
+                    onKeyPress={(event) => {
+                        if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                        }
+                    }}
+                    placeholder="Type aa phone number ..."
+                    type="tel"
+                    pattern="{[0-9]{3}-[0-9]{3}-[0-9]{4}}"
                     required
-                    onChange={(e) => infoData.PhoneNumber = e.target.value}
+                    onChange={(e) => {
+                        console.log(e.target.value)
+                        infoData.PhoneNumber = e.target.value
+                    }}
                 />)}
             <button onClick={SetNewUserData}>Submit</button>
         </div>
