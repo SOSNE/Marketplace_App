@@ -18,6 +18,7 @@ const NewOfferData: NewOfferDataType = {
     token: GetUserInfo("token")
 };
 function AddPage() {
+    const [imageURI, setImageURI] = useState('');
     const HandleNewFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if(file) {
@@ -29,6 +30,7 @@ function AddPage() {
                 30,
                 0,
                 (uri) => {
+                    setImageURI(uri as string);
                     NewOfferData.photoString = uri as string;
                 },
                 'base64'
@@ -46,28 +48,68 @@ function AddPage() {
     }
 
     return (
-        <div>
-                <input
-                    type="text"
-                    placeholder="Product Name"
-                    onChange={(e) => NewOfferData.productName = e.target.value}
-                />
-                <input
-                    type="text"
-                    placeholder="Description"
-                    onChange={(e) => NewOfferData.description = e.target.value}
-                />
-                <input
-                    type="file"
-                    placeholder="Image"
-                    onChange={HandleNewFile}
-                />
-                <input
-                    type='number'
-                    onChange={(e) => NewOfferData.price = parseFloat(e.target.value)}
-                />
-                <button onClick={handleOfferSubmit}>Submit
-                </button>
+        <div className="containerAddPage">
+            <div className="mainInputBox">
+                <div className="photoInputBox">
+                    <h3 className="titleAddPage">Photo</h3>
+                    <label>Select item photo<input
+                        type="file"
+                        className="fileInput"
+                        placeholder="Image"
+                        onChange={HandleNewFile}
+                        required
+                        /> </label>
+                   
+                        {imageURI && <img src={imageURI} alt="Uploaded" className="imageAddPage"/>}
+                    </div>
+
+                <div className="textInputBox">
+                    <div className="inputBox">
+                        <h3 className="titleAddPage">Item Name</h3>
+                        <p className="textAddPage">Write down what you want to sell :</p>
+                        <input
+                            className="offerInput"
+                            type="text"
+                            placeholder="Product Name"
+                            required
+                            onChange={(e) => NewOfferData.productName = e.target.value}
+                            />
+                        </div>
+
+                        
+
+                        <div className="inputBox">
+                                <h3 className="titleAddPage">Price</h3>
+                                <p className="textAddPage">set price for your item</p> 
+                                <input
+                                    className="offerInput"
+                                    type='number'
+                                    placeholder="price"
+                                    required
+                                    onChange={(e) => NewOfferData.price = parseFloat(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="inputBox">
+                            
+                            <h3 className="titleAddPage">Description</h3>
+                            <p className="textAddPage">Write down about item you want to sell :</p>
+                            <textarea   
+                                className="offerInput descriptionAddPage"
+                                cols={2}
+                                rows={5}
+                                maxLength={1024}
+                                name="Text" 
+                                placeholder="Description"
+                                required
+                                onChange={(e) => NewOfferData.description = e.target.value}>
+
+                                </textarea>
+                        </div>
+
+                            <button onClick={handleOfferSubmit} className="buttonAddPage">Submit</button>
+                    </div>
+             </div>    
         </div>
     );
 }

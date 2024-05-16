@@ -1,6 +1,11 @@
-body
+
+.containerLogin
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    margin: 0;
 }
 h1
 {
@@ -10,64 +15,83 @@ h1
 }
 .mainLoginBox 
 {
-    position: relative;
-    left: 37%;
-    top: 150px;
+    margin:auto;
     width: 22%;
-    height: 350px;
+    height: 45%;
     -webkit-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     -moz-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     background-color: var(--Main);
     border-radius: 3%;
     padding: 40px;
+    align-items: center;
     
 }
 .mailLoginInput,.passwordLoginInput
 {
-    width: 80%;
-  padding: 17px 20px;
-  margin: 18px 10%;
-  display: inline-block;
-  border: none;
-  outline: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: transparent;
-  border-bottom: 1px solid black;
-  border-radius: 0%;
+    width: 84%;
+    padding: 16px 20px;
+    margin: 15px 8%;
+    display: inline-block;
+    border: none;
+    outline: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--Third);
+    opacity: 2;
+    border: 1px solid black;
+    border-radius: 9px;
 }
-.mailLoginLabel, .passwordLoginLabel
-{
-    margin-left: 10%;
-    margin-top: 10px;   
-}
+
 .mailLoginInput::placeholder, .passwordLoginInput::placeholder
 {
+    opacity: 0.8s;
     font-size: 16px ;
     text-align: center;
     color: black;
 }
-.mailLoginInput:focus, .passwordLoginInput:focus
-{
-    border-bottom: 4px solid var(--Border1);
-    transition: all 0.3s;
-}
+
 .loginButton
 {
-    position: relative;
-    left: 30%;
-    top: 40px;
+  
+    margin-top: 2vh;
     width: 40%;
-    height: 40px;
+    margin-left: 30%;
+    height: 5vh;
     border-radius: 25px;
     border: none;
-    background-color: var(--LightBlue);
+    background-color: var(--Third);
     font-size: 14px;
+    transition: all 0.4s;
 }
 .loginButton:hover
 {
-    background-color: var(--Blue);
+    background-color: var(--Fourth);
     transition: all 0.4s;
 }
-
+.checkLogLoginPage
+{
+    margin-top: 3vh;
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
+.goSignUp
+{
+    width:40%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: blue;
+    transition: all 0.4s;
+    margin-top: 2.8vh;
+    font-size: 16px;
+}
+.goSignUp:hover
+{
+    cursor: pointer;
+    color: blueviolet;
+}
