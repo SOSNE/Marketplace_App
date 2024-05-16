@@ -13,6 +13,8 @@ const logIn = require("./routes/LogIn")
 const auth = require("./routes/AuthHandlingCheck")
 const newOffer = require("./routes/NewOffer")
 const photos = require("./routes/Image")
+const userInfo = require("./routes/UserInfo")
+const addUserInfo = require("./routes/NewUserInfo")
 app.use('/offers',offersRoute);
 app.use('/signup',signUpRoute);
 app.use('/emailConfirmation',emailConfirmation);
@@ -20,4 +22,6 @@ app.use('/login',logIn);
 app.use('/auth',auth);
 app.use('/newoffer',newOffer);
 app.use('/photo',photos);
+app.use('/userinfo',userInfo);
+app.use('/adduserinfo',addUserInfo);
 app.listen(8080, ()=> {console.log("server listening")})

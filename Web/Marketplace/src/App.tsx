@@ -9,6 +9,7 @@ import LoginPage from "./components/loginPage/LoginPage.tsx";
 import SignUpPage from "./components/signUpPage/SignUpPage.tsx";
 import UserInfoPage from "./components/userInfoPage/UserInfoPage.tsx";
 import OfferPage from "./components/offerPage/OfferPage.tsx";
+import AddUserInfo from "./components/addUserInfo/AddUserInfo.tsx";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     {
         path:"offer",
         element: <OfferPage/>
+    },
+    {
+        path:"adduserinfo",
+        element: <AddUserInfo/>
     }
 ]);
 

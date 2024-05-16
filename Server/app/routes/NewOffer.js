@@ -8,11 +8,12 @@ const router = express.Router()
 router.use(cors())
 
 router.post('/',async (req, res)=>{
-    console.log(req.body)
+    //console.log(req.body)
     const newOfferData = req.body;
     try{
-        const email= jwt.verify(newOfferData.token, PUBLIC_KEY);
-        await AddNewOfferToDatabase(email.email, newOfferData.price,
+        const UserId= jwt.verify(newOfferData.token, PUBLIC_KEY);
+        console.log(UserId);
+        await AddNewOfferToDatabase(UserId.UserId, newOfferData.price,
             newOfferData.description, newOfferData.productName, newOfferData.photoString);
     }catch(err){
         throw err;
