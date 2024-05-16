@@ -135,8 +135,19 @@ function GetPhotoFromDataBase(PhotoId){
     })
 }
 
-function GetUserInfoFromDataBase(email){
-
+function GetUserInfoFromDataBase(UserId){
+    return new Promise((resolve, reject) => {
+        //console.log("logInDataFromDataBase", email);
+        const sql = `SELECT users.Email, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.DateOfBirth FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.UserID = '${UserId}';`
+        con.query(sql, function (err, result) {
+            if (err) {
+                reject(err);
+            } else {
+                //console.log(result);
+                resolve(result);
+            }
+        });
+    });
 }
 module.exports = {
     GetOffersDatabase,
@@ -145,5 +156,6 @@ module.exports = {
     ConfirmEmailToDataBase,
     LogInDataFromDataBase,
     AddNewOfferToDatabase,
-    GetPhotoFromDataBase
+    GetPhotoFromDataBase,
+    GetUserInfoFromDataBase
 };

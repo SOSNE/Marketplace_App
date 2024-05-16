@@ -1,30 +1,62 @@
-
-import { GetUserInfo } from "../utilities/AuthHandling";
+import Cookies from 'universal-cookie';
 import './UserInfoPage.css'
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+type InfoType = {
+    [key: string]: string | null;
+    Email: string,
+    Username: string,
+    FirstName: string,
+    LastName: string,
+    Gender: string,
+    DateOfBirth: string
+}
+
 function UserInfoPage() {
     const [blankField, setBlankField] = useState<boolean>();
-    const getInfo = GetUserInfo("info");
+    const [userInfoData, setUserInfoData] = useState<InfoType>();
+    const cookies = new Cookies();
+
     useEffect(() => {
-        Object.keys(getInfo).forEach(value => {
-            if(getInfo[value] == null){
-                setBlankField(true)
-            }
-        })
-    })
+        fetch("http://localhost:8080/userinfo",{
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ token:  cookies.get('authToken') })
+        }).then(res => res.json())
+            .then(data => setUserInfoData(data.userInfoData[0]))
+            .then(()=>{
+            })
+    },[] );
+
+    useEffect(() => {
+        console.log(userInfoData);
+        if (userInfoData != undefined){
+            Object.keys(userInfoData).forEach(value => {
+                if(userInfoData[value] == null){
+                    setBlankField(true)
+                }
+            })
+        }
+    },[userInfoData])
     const navigate  = useNavigate();
     return (
         <div>
-            <h1>Welcome {getInfo.username}</h1>
-            <div className="mainUserInfoPageBox">
-                <div className="inf">email: {getInfo.email}</div>
-                <div className="inf">firstname: {getInfo.firstname}</div>
-                <div className="inf">lastname: {getInfo.lastname}</div>
-                <div className="inf">gender: {getInfo.gender}</div>
-                {blankField? <button onClick={()=> navigate('/adduserinfo')}>Add more information</button> : null}
-            </div>
+            {userInfoData && (
+                <>
+                    <h1>Welcome {userInfoData.Username}</h1>
+                    <div className="mainUserInfoPageBox">
+                        <div className="inf">email: {userInfoData.Email}</div>
+                        <div className="inf">firstname: {userInfoData.FirstName}</div>
+                        <div className="inf">lastname: {userInfoData.LastName}</div>
+                        <div className="inf">gender: {userInfoData.Gender}</div>
+                        {blankField ? (
+                            <button onClick={() => navigate('/adduserinfo', { state: { infoData: userInfoData } })}>Add more information</button>
+                        ) : null}
+                    </div>
+                </>
+            )}
         </div>
     );
 }
