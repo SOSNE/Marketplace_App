@@ -37,7 +37,7 @@ function LoginPage() {
             })
     }
     return (
-        
+        <div className="containerLogin">
             <div className={"mainLoginBox"}>
 
                 <h1>Login</h1>
@@ -63,6 +63,7 @@ function LoginPage() {
                 <p className="checkLogLoginPage"> {checklog} </p>
                 <p onClick={goToSignUp} className="goSignUp">Sign Up</p>
 
+            </div>
             </div>
     );
 }

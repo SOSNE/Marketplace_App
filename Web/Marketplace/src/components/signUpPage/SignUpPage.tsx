@@ -43,7 +43,7 @@ function SignUpPage() {
     }
 
     return (
-        <div>
+        <div className="containerSignUp">
 
             <div className={"signUpMainBox"}>
                 <h1>Sign In</h1>

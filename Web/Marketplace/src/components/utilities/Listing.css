@@ -1,5 +1,7 @@
 .offerBox{
     width: 21%;
+    min-width: 294px;
+    min-height: 55vh;
     height: 55vh; 
     background-color: var(--Sec);
     margin: 0 1% 4% 3%;

@@ -22,7 +22,7 @@ function OfferPage() {
             <div className="textOfferPageBox">
                     <button className="buttonOfferPage"onClick={goBack}>&#10005;</button> 
                 <div className="offerPageBox">
-                    <h3>Item Name</h3>
+                    <h3>Name</h3>
                     <p>{offerData.ItemName}</p>
                
                     <h3>Seller</h3>
@@ -38,7 +38,6 @@ function OfferPage() {
                
         </div>
         </div> 
-        <footer className="fotterOfferPage"><p>@cukier prosty</p></footer>   
     </div>
     );
 }

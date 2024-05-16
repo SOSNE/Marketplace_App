@@ -51,7 +51,7 @@ function AddPage() {
         <div className="containerAddPage">
             <div className="mainInputBox">
                 <div className="photoInputBox">
-                    <h3>Photo</h3>
+                    <h3 className="titleAddPage">Photo</h3>
                     <label>Select item photo<input
                         type="file"
                         className="fileInput"
@@ -64,8 +64,9 @@ function AddPage() {
                     </div>
 
                 <div className="textInputBox">
-                    <div className="inputBox"><h3>Item Name</h3>
-                        <p>Write down what you want to sell :</p>
+                    <div className="inputBox">
+                        <h3 className="titleAddPage">Item Name</h3>
+                        <p className="textAddPage">Write down what you want to sell :</p>
                         <input
                             className="offerInput"
                             type="text"
@@ -78,7 +79,8 @@ function AddPage() {
                         
 
                         <div className="inputBox">
-                                <h3>Price</h3><p>set price for your item</p> 
+                                <h3 className="titleAddPage">Price</h3>
+                                <p className="textAddPage">set price for your item</p> 
                                 <input
                                     className="offerInput"
                                     type='number'
@@ -90,8 +92,8 @@ function AddPage() {
 
                         <div className="inputBox">
                             
-                            <h3>Description</h3>
-                            <p>Write down about item you want to sell :</p>
+                            <h3 className="titleAddPage">Description</h3>
+                            <p className="textAddPage">Write down about item you want to sell :</p>
                             <textarea   
                                 className="offerInput descriptionAddPage"
                                 cols={2}

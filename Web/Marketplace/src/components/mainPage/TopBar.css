@@ -41,10 +41,11 @@
 }
 .inputField{
     width: 100%;
+    padding-left: 10px;
     height: 35px;
     border: 1px solid var(--Border1);
     border-radius: 40px;
-    padding: 0;
+    padding-left: 8px;
     box-sizing: border-box;
     background-color: var(--BackGround);
 }
