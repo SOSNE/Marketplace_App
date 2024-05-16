@@ -53,11 +53,11 @@ h1
 
 .loginButton
 {
-    position: relative;
-    left: 30%;
-    top: 38px;
+  
+    margin-top: 2vh;
     width: 40%;
-    height: 40px;
+    margin-left: 30%;
+    height: 5vh;
     border-radius: 25px;
     border: none;
     background-color: var(--Third);
@@ -71,7 +71,7 @@ h1
 }
 .checkLogLoginPage
 {
-    margin-top: 20%;
+    margin-top: 3vh;
     width: 100%;
     text-align: center;
     height: 20px;
@@ -87,8 +87,8 @@ h1
     margin-right: auto;
     color: blue;
     transition: all 0.4s;
-    margin-bottom: 2%;
-    font-size: 14px;
+    margin-top: 2.8vh;
+    font-size: 16px;
 }
 .goSignUp:hover
 {
