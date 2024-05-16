@@ -1,16 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-// type InfoType = {
-//     [key: string]: string | null;
-//     Email: string,
-//     Username: string,
-//     FirstName: string,
-//     LastName: string,
-//     Gender: string,
-//     DateOfBirth: string
-// }
-
 function AddUserInfo() {
     const {state} = useLocation();
     const { infoData } = state;
