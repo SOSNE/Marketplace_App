@@ -10,7 +10,7 @@ const con = mysql.createConnection({
 
 async function GetOffersDatabase() {
     const itemData = new Promise((resolve, reject) => {
-        const sql =  `SELECT items.ItemId, items.ItemName, items.Description, items.Price, users.Username FROM users JOIN items ON users.UserID = items.UserID;`
+        const sql =  `SELECT items.ItemId, items.ItemName, items.Description, items.Price, users.Username, userprofiles.FirstName, userprofiles.LastName, userprofiles.PhoneNumber, userprofiles.Country, userprofiles.City, userprofiles.Address FROM users JOIN items ON users.UserID = items.UserID JOIN userprofiles ON users.UserID = userprofiles.UserID;`
          con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
