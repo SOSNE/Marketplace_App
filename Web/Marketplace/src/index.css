@@ -6,13 +6,15 @@
   -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
 
-  --Main: #66789d;
-  --Sec: #A9B4CB; 
-  --Blue: #A2D2FF;
-  --Third: #8899BB;
-  --LightBlue: #BDE0FE;
-  --BackGround: #F3F4F7;
-  --Border1: #0B0D10;
+  --Main: #e9ecef;
+  --Sec: #e7ecef; 
+  --Fourth: #adb5bd;
+  --Third: #ced4da;
+  --Fifth: #6c757d ; 
+
+  --BackGround: #f8f9fa;
+  --Border1: #212529;
+
 
 }
 body{

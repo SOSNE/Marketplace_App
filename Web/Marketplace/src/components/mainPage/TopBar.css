@@ -18,7 +18,7 @@
 }
 .accountButton:active {
     border-radius: 5px;
-    background-color: var(--Border1);
+    background-color: var(--Fifth);
 }
 .accountButton:active .userAccountImage{
     color: white;
@@ -32,18 +32,20 @@
     top: 50%;
     left: 3%;
     transform: translate(-50%, -50%);
+    transition: all 0.8s;
 }
 .userAccountImage{
     width: 32px;
     height: 32px;
-    color: var(--Sec);
+    color: var(--Fourth);
 }
 .inputField{
     width: 100%;
+    padding-left: 10px;
     height: 35px;
-    border: 3px solid var(--Border1);
-    border-radius: 8px;
-    padding: 0;
+    border: 1px solid var(--Border1);
+    border-radius: 40px;
+    padding-left: 8px;
     box-sizing: border-box;
     background-color: var(--BackGround);
 }

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import './SignUpPage.css';
+import { useNavigate } from "react-router-dom";
+
 let passwordConfirmationVariable1: string, passwordConfirmationVariable2: string, passwordsMatch:boolean;
 type SignUpDataType = {
     nickName: string;
@@ -12,8 +14,12 @@ const signUpData: SignUpDataType = {
     password: ""
 };
 function SignUpPage() {
+    const navigate = useNavigate();
     const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
+    const goToLogIn = ()=> {
 
+        navigate("/login");
+    };
 
 
     const HandleSignUp = () => {
@@ -37,10 +43,10 @@ function SignUpPage() {
     }
 
     return (
-        <div>
+        <div className="containerSignUp">
 
             <div className={"signUpMainBox"}>
-                <h1>SignIn</h1>
+                <h1>Sign In</h1>
                 <input
                     className="nicknameSingUpInput"
                     type="text"
@@ -76,10 +82,12 @@ function SignUpPage() {
                         handleWrongPasswordConfirmation(e, passwordConfirmationVariable2);
                     }}
                 />
-                {wrongPasswordMessage}
+                
                 <button onClick={HandleSignUp} className="signUpButton">
                     Sign In
                 </button>
+                <p className="wrongPassMessage">{wrongPasswordMessage}</p>
+                <p className="goLoginPage" onClick={goToLogIn}>Login</p>
             </div>
         </div>
     );

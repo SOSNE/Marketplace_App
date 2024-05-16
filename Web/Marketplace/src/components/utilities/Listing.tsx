@@ -32,7 +32,7 @@ function Listing({prop}: {prop: string}) {
                 <div key={index} className="offerBox" onClick={() => navigate("offer", { state: { offerData: object } })}>
                     <img className="image" src={object.PhotoString} alt={`Photo ${index}`}/>
                     <h3 className="itemName">{object.ItemName + " "}</h3>
-                    <p className="price">{object.Price + "$ "}</p>
+                    <p className="price">{"$"+object.Price }</p>
                 </div>
             ))}
         </div>
