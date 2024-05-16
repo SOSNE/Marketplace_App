@@ -64,12 +64,12 @@
 .buttonImage{
     width: 32px;
     height: 32px;
-    color: var(--Sec);
+    color: var(--Fifth);
 }
 .logButtons{
     border-radius: 10px;
     border: none;
-    background-color: var(--Sec);
-    color: var(--Main);
+    background-color: #d5dbdd;
+    color: var(--Fifth);
     height: 30px;
 }
