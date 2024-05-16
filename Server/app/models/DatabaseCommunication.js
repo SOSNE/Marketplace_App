@@ -72,7 +72,7 @@ ${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`})`;
     });
 }
 
-function UpdateUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, PhoneNumber = null, Address = null, City = null, PostalCode = null, Country = null){
+function UpdateUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth = null, Gender = null, PhoneNumber = null, Country = null, City = null, Address = null, PostalCode = null){
     const sql = `UPDATE userprofiles set
                     FirstName = ${FirstName == null ? FirstName : `'${FirstName}'`},
                     LastName = ${LastName == null ? LastName : `'${LastName}'`},
@@ -89,17 +89,6 @@ function UpdateUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth =
         if (err) throw err;
     });
 }
-// INSERT INTO
-// userprofiles( UserID, FirstName, LastName, DateOfBirth, Gender, Address, City, PostalCode, Country, PhoneNumber)
-// VALUES (${UserId}, ${FirstName == null ? FirstName : `'${FirstName}'`},
-// ${LastName == null ? LastName : `'${LastName}'`},
-// ${DateOfBirth == null ? DateOfBirth : `'${DateOfBirth}'`},
-// ${Gender == null ? Gender : `'${Gender}'`},
-// ${Address == null ? Address : `'${Address}'`},
-// ${City == null ? City : `'${City}'`},
-// ${PostalCode == null ? PostalCode : `'${PostalCode}'`},
-// ${Country == null ? Country : `'${Country}'`},
-// ${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`})
 
 function SignUpDataBase(username, email, password) {
     let date = new Date()
@@ -175,8 +164,7 @@ function GetPhotoFromDataBase(PhotoId){
 
 function GetUserInfoFromDataBase(UserId){
     return new Promise((resolve, reject) => {
-        //console.log("logInDataFromDataBase", email);
-        const sql = `SELECT users.Email, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.PhoneNumber FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.UserID = '${UserId}';`
+        const sql = `SELECT users.Email, users.Username ,userprofiles.FirstName, userprofiles.LastName, userprofiles.Gender, userprofiles.PhoneNumber, userprofiles.Country, userprofiles.City, userprofiles.Address FROM users Join userprofiles ON users.UserID = userprofiles.UserID WHERE users.UserID = '${UserId}';`
         con.query(sql, function (err, result) {
             if (err) {
                 reject(err);
