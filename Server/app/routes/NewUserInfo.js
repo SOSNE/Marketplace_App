@@ -9,13 +9,11 @@ const router = express.Router()
 router.use(cors())
 
 router.post('/',async (req, res)=>{
-    console.log(req.body);
     const tokenData = req.body.token;
     const userInfoData = req.body.infoData;
     try{
         const UserId = jwt.verify(tokenData, PUBLIC_KEY).UserId;
-        console.log(UserId);
-        UpdateUserInfo(UserId, userInfoData.FirstName, userInfoData.LastName, userInfoData.DateOfBirth, userInfoData.Gender, userInfoData.PhoneNumber)
+        UpdateUserInfo(UserId, userInfoData.FirstName, userInfoData.LastName, userInfoData.DateOfBirth, userInfoData.Gender, userInfoData.PhoneNumber, userInfoData.Country, userInfoData.City, userInfoData.Address)
         res.status(200).send(true)
     }catch(err){
         res.status(200).send(false)

@@ -10,7 +10,11 @@ type InfoType = {
     FirstName: string,
     LastName: string,
     Gender: string,
-    PhoneNumber: number
+    PhoneNumber: number,
+    Country: string,
+    City: string,
+    Address:string
+
 }
 
 function UserInfoPage() {
@@ -52,6 +56,9 @@ function UserInfoPage() {
                         <div className="inf">lastname: {userInfoData.LastName}</div>
                         <div className="inf">gender: {userInfoData.Gender}</div>
                         <div className="inf">phone number: {userInfoData.PhoneNumber}</div>
+                        <div className="inf">Country: {userInfoData.Country}</div>
+                        <div className="inf">City: {userInfoData.City}</div>
+                        <div className="inf">Address: {userInfoData.Address}</div>
                         {blankField ? (
                             <button onClick={() => navigate('/adduserinfo', {state: {infoData: userInfoData}})}>Add more
                                 information</button>

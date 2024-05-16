@@ -64,6 +64,27 @@ function AddUserInfo() {
                         infoData.PhoneNumber = e.target.value
                     }}
                 />)}
+            {infoData.Country != undefined ? (<div>{infoData.Country}</div>)
+                : (<input
+                    placeholder="Type your Country ..."
+                    type="text"
+                    required
+                    onChange={(e) => infoData.Country = e.target.value}
+                />)}
+            {infoData.City != undefined ? (<div>{infoData.City}</div>)
+                : (<input
+                    placeholder="Type your City ..."
+                    type="text"
+                    required
+                    onChange={(e) => infoData.City = e.target.value}
+                />)}
+            {infoData.Address != undefined ? (<div>{infoData.Address}</div>)
+                : (<input
+                    placeholder="Type your Address ..."
+                    type="text"
+                    required
+                    onChange={(e) => infoData.Address = e.target.value}
+                />)}
             <button onClick={SetNewUserData}>Submit</button>
         </div>
     )

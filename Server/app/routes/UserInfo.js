@@ -12,9 +12,7 @@ router.post('/',async (req, res)=>{
 
     try{
         const UserId = jwt.verify(tokenData.token, PUBLIC_KEY).UserId;
-        console.log(UserId);
         const userInfoData = await GetUserInfoFromDataBase(UserId)
-        console.log(userInfoData);
         res.status(200).send({userInfoData})
     }catch(err){
         throw err;
