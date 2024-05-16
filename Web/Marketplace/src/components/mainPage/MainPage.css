@@ -1,5 +1,5 @@
 .addButton{
-    background-color: var(--Main);
+    background-color: var(--Third);
     border: none;
     border-radius: 50px;
     height: 50px;
@@ -19,21 +19,83 @@
 }
 .offersBox{
     width: 100%;
-   
+    min-height: 100vh;
     display: grid;
     margin: 0 auto;
     grid-gap: 0.5rem;
     align-items: center;
     grid-template-columns:auto auto auto auto;
 }
-.fotter
-{
-    position: relative;
-    bottom: 0;
-   text-align: center;
-   padding-top: 3px;    
-   font-size: 18px;
-    height: 50px;
-    width: 100%;
-    background-color: var(--Main);
-}
+
+.fotter {
+    background-color: var(--Sec);
+    color: var(--Border1);
+    margin: 0;
+    padding: 20px 0;
+  }
+  
+  .footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  .footer-section h4 {
+    border-bottom: 1px solid var(--Fourth);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section p, 
+  .footer-section a {
+    color: var(--Border1);
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    color: var(--Fifth);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--Border1);
+    padding-top: 10px;
+    margin-top: 20px;
+  }
+  
+  .footer-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-icons a {
+    color: var(--Border1);
+    margin: 10px 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-icons a span {
+    margin-left: 10px;
+  }
+  
+  .footer-icons a:hover {
+    color: var(--Fifth);
+  }
+  
+
+  
+  
