@@ -3,6 +3,7 @@ import Resizer from 'react-image-file-resizer';
 import {CheckAuth, GetUserInfo} from "../utilities/AuthHandling.ts";
 import {useEffect, useState} from "react";
 import Cookies from "universal-cookie";
+import {useNavigate} from "react-router-dom";
         
 type NewOfferDataType = {
     [key: string]: string | number | null;
@@ -31,11 +32,11 @@ type InfoType = {
 }
 
 function AddPage() {
-  
     const [userInfoData, setUserInfoData] = useState<InfoType>();
     const [imageURI, setImageURI] = useState('');
+    const [feedBackMessage, setfeedBackMessage] = useState<string>('');
     const cookies = new Cookies();
-
+    const navigate = useNavigate();
     useEffect(() => {
         fetch("http://localhost:8080/userinfo",{
             method: "POST",
@@ -89,7 +90,14 @@ function AddPage() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(NewOfferData)
             }).then(res => res.json())
-        }
+                .then(data => {
+                    if(data.status == true){
+                        navigate("/");
+                    }else {
+                        setfeedBackMessage("Adding offer filed");
+                    }
+                })
+        }else {setfeedBackMessage("Adding offer filed");}
     }
 
     return (
@@ -153,6 +161,7 @@ function AddPage() {
                         </div>
 
                             <button onClick={handleOfferSubmit} className="buttonAddPage">Submit</button>
+                    {feedBackMessage}
                     </div>
              </div>    
         </div>

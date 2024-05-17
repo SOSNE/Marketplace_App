@@ -1,5 +1,5 @@
 import './LoginPage.css'
-import {AuthHandling, CheckAuth} from "../utilities/AuthHandling.ts";
+import {AuthHandling} from "../utilities/AuthHandling.ts";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 

@@ -16,7 +16,8 @@ router.post('/',async (req, res)=>{
         await AddNewOfferToDatabase(UserId.UserId, newOfferData.price,
             newOfferData.description, newOfferData.productName, newOfferData.photoString);
     }catch(err){
-        throw err;
+
+        res.status(200).send({status:false});
     }
     res.status(200).send({status:true})
 })
