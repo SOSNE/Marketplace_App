@@ -34,7 +34,7 @@ type InfoType = {
 function AddPage() {
     const [userInfoData, setUserInfoData] = useState<InfoType>();
     const [imageURI, setImageURI] = useState('');
-    const [feedBackMessage, setfeedBackMessage] = useState<string>('');
+    const [feedBackMessage, setFeedBackMessage] = useState<string>('');
     const cookies = new Cookies();
     const navigate = useNavigate();
     useEffect(() => {
@@ -94,10 +94,10 @@ function AddPage() {
                     if(data.status == true){
                         navigate("/");
                     }else {
-                        setfeedBackMessage("Adding offer filed");
+                        setFeedBackMessage("Adding offer filed");
                     }
                 })
-        }else {setfeedBackMessage("Adding offer filed");}
+        }else {setFeedBackMessage("Adding offer filed");}
     }
 
     return (
