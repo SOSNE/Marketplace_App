@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Cookies from "universal-cookie";
 import './AddUserInfo.css'
 
@@ -6,6 +6,7 @@ function AddUserInfo() {
     const {state} = useLocation();
     const { infoData } = state;
     const cookies = new Cookies();
+    const navigate = useNavigate();
     const SetNewUserData = ()=>{
         console.log(infoData);
         fetch("http://localhost:8080/adduserinfo",{
@@ -14,6 +15,7 @@ function AddUserInfo() {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({infoData:infoData, token:cookies.get("authToken")})
         }).then(res => res.json())
+        navigate("/userinfo")
     }
 
     return (

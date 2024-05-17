@@ -22,10 +22,12 @@ router.post('/',async (req, res)=>{
     const username = req.body.nickName;
     console.log('Received data:', req.body, signInDataBaseData);
     if(signInDataBaseData.some(obj => obj.Email === email && obj.email_confirmed == 1)){
-        return res.status(200).send("user with this email exist");
+        console.log("wrong email");
+        return res.status(200).send({status:false});
     }
     if(signInDataBaseData.some(obj => obj.Username === username && obj.email_confirmed == 1)){
-        return res.status(200).send("user with this nickName exist");
+        console.log("wrong username")
+        return res.status(200).send({status:false});
     }
         SignUpDataBase(username, email, req.body.password)
 
@@ -38,11 +40,11 @@ router.post('/',async (req, res)=>{
                 html: `Click confirm to confirm email: <a href=${url}>confirm</a>`
             }, (err,res)=>{
                 if(err){
-                    throw err;
+                    res.status(200).send({status:false});
                 }
             })
            if(err){
-               throw err;
+               res.status(200).send({status:false});
            }
         });
     /*try {
@@ -50,7 +52,7 @@ router.post('/',async (req, res)=>{
     }catch(err) {
         res.status(200).send("error with adding new user");
     }*/
-    res.status(200).send("new user added");
+        res.status(200).send({status:true});
 }
 )
 module.exports = router;

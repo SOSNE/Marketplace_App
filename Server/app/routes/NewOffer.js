@@ -10,13 +10,13 @@ router.use(cors())
 router.post('/',async (req, res)=>{
     //console.log(req.body)
     const newOfferData = req.body;
+    const UserId= jwt.verify(newOfferData.token, PUBLIC_KEY);
+    console.log(UserId);
     try{
-        const UserId= jwt.verify(newOfferData.token, PUBLIC_KEY);
-        console.log(UserId);
         await AddNewOfferToDatabase(UserId.UserId, newOfferData.price,
             newOfferData.description, newOfferData.productName, newOfferData.photoString);
     }catch(err){
-        throw err;
+       return res.status(200).send({status:false});
     }
     res.status(200).send({status:true})
 })

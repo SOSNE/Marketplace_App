@@ -16,6 +16,7 @@ const signUpData: SignUpDataType = {
 function SignUpPage() {
     const navigate = useNavigate();
     const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
+    const [feedBackMessage, setFeedBackMessage] = useState<string>('');
     const goToLogIn = ()=> {
 
         navigate("/login");
@@ -23,13 +24,23 @@ function SignUpPage() {
 
 
     const HandleSignUp = () => {
+        console.log(signUpData);
         if (passwordsMatch){
             fetch("http://localhost:8080/signup",{
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(signUpData)
-        }).then(()=> console.log("SignUp", signUpData))}
+        }).then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if(data.status == true){
+                        setFeedBackMessage("Signup succeed, check your email");
+                    }else {
+                        setFeedBackMessage("Signup filed");
+                    }
+                })
+        }else {setFeedBackMessage("Signup filed");}
 
     }
     const handleWrongPasswordConfirmation = (e:React.ChangeEvent<HTMLInputElement> , passwordConfirmationVariable:string) =>{
@@ -87,6 +98,7 @@ function SignUpPage() {
                     Sign In
                 </button>
                 <p className="wrongPassMessage">{wrongPasswordMessage}</p>
+                {feedBackMessage}
                 <p className="goLoginPage" onClick={goToLogIn}>Login</p>
             </div>
         </div>
