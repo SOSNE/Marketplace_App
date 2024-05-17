@@ -52,7 +52,7 @@
 
 .offerPageBox {
     padding-left: 10px;
-    max-height: 25vh;
+    max-height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

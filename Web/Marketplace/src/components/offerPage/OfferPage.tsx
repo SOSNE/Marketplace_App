@@ -22,13 +22,16 @@ function OfferPage() {
             <div className="textOfferPageBox">
                     <button className="buttonOfferPage"onClick={goBack}>&#10005;</button> 
                 <div className="offerPageBox">
-                    <h3>Name</h3>
-                    <p>{offerData.ItemName}</p>
-               
-                    <h3>Seller</h3>
-                    <p>{offerData.Username}</p>
+                    <h2>{offerData.ItemName}</h2>
                     <h3>Price</h3>
-                    <p>{offerData.Price}</p>
+                    <p>${offerData.Price}</p>
+                    <h3>Contact</h3>
+                    <p>Seller: {offerData.FirstName} {offerData.LastName}</p>
+                    <p>tel: {offerData.PhoneNumber}</p>
+                    
+                    <h3>Location</h3>
+                    <p>{offerData.Country} , {offerData.City} , {offerData.Address}</p>
+                    
                  </div>
 
             <div className="offerPageDescriptionBox">
