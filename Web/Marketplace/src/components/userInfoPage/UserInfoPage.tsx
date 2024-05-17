@@ -49,20 +49,22 @@ function UserInfoPage() {
         <div>
             {userInfoData && (
                 <>
-                    <h1>Welcome {userInfoData.Username}</h1>
+                <div className="userInfoContainer">
                     <div className="mainUserInfoPageBox">
-                        <div className="inf">email: {userInfoData.Email}</div>
-                        <div className="inf">firstname: {userInfoData.FirstName}</div>
-                        <div className="inf">lastname: {userInfoData.LastName}</div>
-                        <div className="inf">gender: {userInfoData.Gender}</div>
-                        <div className="inf">phone number: {userInfoData.PhoneNumber}</div>
+                    <h1>Welcome {userInfoData.Username}</h1>
+                        <div className="inf">Email: {userInfoData.Email}</div>
+                        <div className="inf">Firstname: {userInfoData.FirstName}</div>
+                        <div className="inf">Lastname: {userInfoData.LastName}</div>
+                        <div className="inf">Gender: {userInfoData.Gender}</div>
+                        <div className="inf">Phone number: {userInfoData.PhoneNumber}</div>
                         <div className="inf">Country: {userInfoData.Country}</div>
                         <div className="inf">City: {userInfoData.City}</div>
                         <div className="inf">Address: {userInfoData.Address}</div>
                         {blankField ? (
-                            <button onClick={() => navigate('/adduserinfo', {state: {infoData: userInfoData}})}>Add more
+                            <button onClick={() => navigate('/adduserinfo', {state: {infoData: userInfoData}})} className="userPageButton">Add more
                                 information</button>
                         ) : null}
+                    </div>
                     </div>
                 </>
             )}
