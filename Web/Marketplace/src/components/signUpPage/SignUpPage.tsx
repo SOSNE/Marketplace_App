@@ -15,7 +15,7 @@ const signUpData: SignUpDataType = {
 };
 function SignUpPage() {
     const navigate = useNavigate();
-    const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
+    // const [wrongPasswordMessage, setWrongPasswordMessage] = useState<string>();
     const [feedBackMessage, setFeedBackMessage] = useState<string>('');
     const goToLogIn = ()=> {
 
@@ -45,11 +45,11 @@ function SignUpPage() {
     }
     const handleWrongPasswordConfirmation = (e:React.ChangeEvent<HTMLInputElement> , passwordConfirmationVariable:string) =>{
         if (passwordConfirmationVariable == e.target.value || e.target.value == ""){
-            setWrongPasswordMessage("")
+            setFeedBackMessage("")
             passwordsMatch = true;
         }else {
             passwordsMatch = false;
-            setWrongPasswordMessage("Password and confirm password must be the same");
+            setFeedBackMessage("Password and confirm password must be the same");
         }
     }
 
@@ -97,9 +97,11 @@ function SignUpPage() {
                 <button onClick={HandleSignUp} className="signUpButton">
                     Sign In
                 </button>
-                <p className="wrongPassMessage">{wrongPasswordMessage}</p>
-                {feedBackMessage}
-                <p className="goLoginPage" onClick={goToLogIn}>Login</p>
+                <p className="wrongPassMessage">{feedBackMessage}</p>
+                {/*{feedBackMessage}*/}
+                <button className="loginButton" onClick={goToLogIn}>
+                    Log In
+                </button>
             </div>
         </div>
     );
