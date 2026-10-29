@@ -27,7 +27,7 @@
     color: white;
 }
 .accountButton {
-    position: static; /* Usuwamy pozycjonowanie absolutne */
+    position: static;
     transform: none;
     background: none;
     border: none;
