@@ -8,7 +8,7 @@ router.use(cors())
 router.post('/',async (req, res)=>{
     //console.log(req.body.PhotoID);
     const PhotoID = await req.body.PhotoID;
-    const photo = await GetPhotoFromDataBase(PhotoID);
+    const photo = await GetPhotoFromDatćaBase(PhotoID);
     res.status(200).json(photo);
 });
 module.exports = router;
