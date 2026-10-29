@@ -18,7 +18,7 @@ function MainPage() {
     return (
         <div>
             <TopBar getData={handleChildData}/>
-            <div className={"offersBox"}>
+            <div className={"offersBoxMainPage"}>
                 <Listing prop={inputValue}/>
             </div>
             <button className={"addButton"} onClick={handleAuthNavigate}>

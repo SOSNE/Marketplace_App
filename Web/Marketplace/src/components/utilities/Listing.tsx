@@ -27,7 +27,7 @@ function Listing({prop}: {prop: string}) {
     }, [prop]);
     console.log(offers);
     return  (
-        <div>
+        <>
             {offers !== undefined && offers.map((object: Offer, index: number) => (
                 <div key={index} className="offerBox" onClick={() => navigate("offer", { state: { offerData: object } })}>
                     <img className="image" src={object.PhotoString} alt={`Photo ${index}`}/>
@@ -35,7 +35,7 @@ function Listing({prop}: {prop: string}) {
                     <p className="price">{"$"+object.Price }</p>
                 </div>
             ))}
-        </div>
+        </>
     );
 }
 

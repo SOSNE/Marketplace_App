@@ -1,29 +1,30 @@
 .offerBox{
-    width: 21%;
-    min-width: 294px;
+    width: 26%;
+    min-width: 250px;
     min-height: 55vh;
-    height: 55vh; 
+    height: 55vh;
     background-color: var(--Sec);
-    margin: 0 1% 4% 3%;
+    /*margin: 0 1% 4% 3%;*/
     float: inline-start;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     font-size: 1.3vw;
     transition: all 0.5s;
+
 }
 .offerBox:hover
 {
     background-color: var(--Third);
 }
-  
+
 .image{
     
     width: 88%;
     height: 60%;
     margin: 6% auto 5% auto;
     object-fit: cover;
-   
+
 }
 .itemName , .price
 {

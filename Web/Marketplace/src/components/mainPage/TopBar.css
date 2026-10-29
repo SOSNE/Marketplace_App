@@ -1,17 +1,20 @@
-.topBar{
+.topBar {
     width: 100%;
     height: 60px;
     background-color: var(--Main);
-    position: relative;
     margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
-.search{
-    display: inline-block;
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.search {
+    transform: none;
+    display: flex;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 20px;
 }
 .accountButton:hover .userAccountImage{
     color: var(--Border1);
@@ -23,15 +26,12 @@
 .accountButton:active .userAccountImage{
     color: white;
 }
-.accountButton{
-    display: inline-block;
-    position: absolute;
-    width: auto;
+.accountButton {
+    position: static; /* Usuwamy pozycjonowanie absolutne */
+    transform: none;
     background: none;
     border: none;
-    top: 50%;
-    left: 3%;
-    transform: translate(-50%, -50%);
+    cursor: pointer;
     transition: all 0.8s;
 }
 .userAccountImage{
@@ -49,13 +49,11 @@
     box-sizing: border-box;
     background-color: var(--BackGround);
 }
-.buttons{
-    position: absolute;
-    top: 50%;
-    left: 85%;
-    transform: translate(-50%, -50%);
+.buttons {
+    transform: none;
     display: flex;
-    white-space: nowrap
+    align-items: center;
+    white-space: nowrap;
 }
 .button{
     background: none;
@@ -70,6 +68,11 @@
     border-radius: 10px;
     border: none;
     background-color: #d5dbdd;
-    color: var(--Fifth);
     height: 30px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+.logButtons:hover{
+    background-color: var(--Border1);
+    color: var(--Fifth);
 }

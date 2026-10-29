@@ -3,9 +3,9 @@ import './TopBar.css'
 import { FiUser } from "react-icons/fi";
 import { HandleAuthNavigate } from "../utilities/AuthHandling.ts";
 import { useNavigate } from "react-router-dom";
-import { CiSettings } from "react-icons/ci";
-import { GrInstall } from "react-icons/gr";
-import { CiSquareQuestion } from "react-icons/ci";
+// import { CiSettings } from "react-icons/ci";
+// import { GrInstall } from "react-icons/gr";
+// import { CiSquareQuestion } from "react-icons/ci";
 
 import LoginLogoutButtonsTopBar from "../utilities/LoginLogoutButtonsTopBar.tsx";
 
@@ -35,11 +35,11 @@ function TopBar(props:TopBarProps) {
                 />
             </div>
             <div className={'buttons'}>
-                <button className={'button settings'}><CiSettings className={'buttonImage'}/>
-                </button>
-                <button className={'button yourOffer'}><GrInstall className={'buttonImage'}/></button>
-                <button className={'button about'}><CiSquareQuestion className={'buttonImage'}/>
-                </button>
+                {/*<button className={'button settings'}><CiSettings className={'buttonImage'}/>*/}
+                {/*</button>*/}
+                {/*<button className={'button yourOffer'}><GrInstall className={'buttonImage'}/></button>*/}
+                {/*<button className={'button about'}><CiSquareQuestion className={'buttonImage'}/>*/}
+                {/*</button>*/}
                 <LoginLogoutButtonsTopBar/>
             </div>
         </div>
