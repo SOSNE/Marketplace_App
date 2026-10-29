@@ -11,7 +11,7 @@
     align-items: center;
     font-size: 1.3vw;
     transition: all 0.5s;
-
+    cursor: pointer;
 }
 .offerBox:hover
 {

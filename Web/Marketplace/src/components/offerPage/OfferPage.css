@@ -40,7 +40,7 @@
 }
 
 .textOfferPageBox {
-    width: 40%;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -104,20 +104,21 @@ p
     background-color: var(--Main);
 }
 
-.buttonOfferPage
-{
-    width: 10%;
-    height: 6.5%;
-    min-height: 40px;
-    max-width: 40px;
-     margin-left: 50%;
-     border-radius: 90%;
+.buttonOfferPage {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    border-radius: 50%;
     border: none;
     background-color: var(--Third);
-    font-size: 1em;
-    transition: all 0.6s;
-    margin-left: 90%;
     font-size: 24px;
+    transition: all 0.6s;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .buttonOfferPage:hover
 {

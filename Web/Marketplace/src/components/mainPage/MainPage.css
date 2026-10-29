@@ -30,6 +30,7 @@
     min-height: 100vh;
     display: grid;
     margin: 0 auto;
+    margin-bottom: 10px;
     gap: 2rem 0rem; /* 2rem w pionie, 4rem w poziomie */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     justify-content: center;
