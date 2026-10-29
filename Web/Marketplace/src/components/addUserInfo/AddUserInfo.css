@@ -9,7 +9,7 @@
 .addUserInfoBox 
 {
     width: 35%;
-    height: 75%;
+    height: auto;
     -webkit-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     -moz-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
@@ -21,8 +21,7 @@
 {
     width: 80%;
     height: 8%;
-    margin-left: auto;
-    margin-right: auto;
+    margin:0 10% 2% 10% ;
 }
 
 .inputAddPage
@@ -48,10 +47,10 @@
     text-align: center;
     color: black;
 }
-.addInfoButton
+.addInfoButtonSubmit
 {
-  
     margin-top: 5%;
+    margin-bottom: 5%;
     width: 40%;
     height: 5vh;
     border-radius: 25px;
@@ -60,7 +59,7 @@
     font-size: 14px;
     transition: all 0.4s;
 }
-.addInfoButton:hover
+.addInfoButtonSubmit:hover
 {
     background-color: var(--Fourth);
     transition: all 0.4s;

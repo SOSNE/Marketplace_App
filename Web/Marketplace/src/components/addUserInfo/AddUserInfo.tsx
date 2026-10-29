@@ -21,7 +21,7 @@ function AddUserInfo() {
     return (
         <div className="addUserInfoContainer">
             <div className="addUserInfoBox">
-                <h2>{infoData.Username} complete your profile </h2>
+                <h2> Complete your profile! </h2>
             {infoData.Email != undefined ? (<div className="infAdd">Email: {infoData.Email}</div>)
                 : (<input
                     placeholder="Type your mail ..."
@@ -97,7 +97,7 @@ function AddUserInfo() {
                     required
                     onChange={(e) => infoData.Address = e.target.value}
                 />)}
-            <button onClick={SetNewUserData} className="addInfoButton">Submit</button>
+            <button onClick={SetNewUserData} className="addInfoButtonSubmit">Submit</button>
         </div>
         </div>
     )
