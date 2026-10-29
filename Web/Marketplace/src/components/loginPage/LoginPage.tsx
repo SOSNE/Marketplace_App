@@ -61,10 +61,13 @@ function LoginPage() {
                     Log In
                 </button>
                 <p className="checkLogLoginPage"> {checklog} </p>
-                <p onClick={goToSignUp} className="goSignUp">Sign Up</p>
+                {/*<p onClick={goToSignUp} className="goSignUp">Sign Up</p>*/}
+                <button className="redirectSignUpBtn" onClick={goToSignUp}>
+                    Sign Up
+                </button>
 
             </div>
-            </div>
+        </div>
     );
 }
 

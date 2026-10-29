@@ -13,11 +13,11 @@ h1
     text-align: center;
     margin-top: -10px;
 }
-.mainLoginBox 
+.mainLoginBox
 {
-    margin:auto;
+    margin: auto;
     width: 22%;
-    height: 45%;
+    height: auto;
     -webkit-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     -moz-box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 20px -8px rgba(66, 68, 90, 1);
@@ -25,7 +25,8 @@ h1
     border-radius: 3%;
     padding: 40px;
     align-items: center;
-    
+    justify-content: center;
+
 }
 .mailLoginInput,.passwordLoginInput
 {
@@ -53,7 +54,6 @@ h1
 
 .loginButton
 {
-  
     margin-top: 2vh;
     width: 40%;
     margin-left: 30%;
@@ -71,27 +71,29 @@ h1
 }
 .checkLogLoginPage
 {
-    margin-top: 3vh;
+    margin-top: 5%;
+    margin-bottom: 5%;
     width: 100%;
     text-align: center;
-    height: 20px;
     margin-left: auto;
     margin-right: auto;
     font-size: large;
+    color: #575757;
 }
-.goSignUp
-{
-    width:40%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    color: blue;
+
+.redirectSignUpBtn {
+    width: 40%;
+    margin-left: 30%;
+    height: 5vh;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--Third);
+    color: #1860ea;
+    font-size: 14px;
     transition: all 0.4s;
-    margin-top: 2.8vh;
-    font-size: 16px;
 }
-.goSignUp:hover
-{
-    cursor: pointer;
-    color: blueviolet;
+
+.redirectSignUpBtn:hover {
+    background-color: var(--Fourth);
+    transition: all 0.4s;
 }
