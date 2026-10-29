@@ -83,7 +83,7 @@ function UpdateUserInfo(UserId, FirstName = null, LastName = null, DateOfBirth =
                     PostalCode = ${PostalCode == null ? PostalCode : `'${PostalCode}'`},
                     Country = ${Country == null ? Country : `'${Country}'`},
                     PhoneNumber = ${PhoneNumber == null ? PhoneNumber : `'${PhoneNumber}'`}
-                    WHERE 
+                    WHERE
                     UserID = ${UserId}`;
     con.query(sql, function (err, result) {
         if (err) throw err;
