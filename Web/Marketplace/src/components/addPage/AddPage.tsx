@@ -13,12 +13,13 @@ type NewOfferDataType = {
     price: number;
     token: string;
 }
+
 const NewOfferData: NewOfferDataType = {
     productName: "",
     description: "",
     photoString: "",
     price: 0,
-    token: GetUserInfo("token")
+    token: ""
 };
 
 type InfoType = {
@@ -37,6 +38,8 @@ function AddPage() {
     const [feedBackMessage, setFeedBackMessage] = useState<string>('');
     const cookies = new Cookies();
     const navigate = useNavigate();
+
+
     useEffect(() => {
         fetch("http://localhost:8080/userinfo",{
             method: "POST",
@@ -70,20 +73,23 @@ function AddPage() {
 
     const handleOfferSubmit = async () => {
         let BlancField = true
+        NewOfferData.token = GetUserInfo("token");
         if ( userInfoData != undefined){
             Object.keys(userInfoData).forEach(value => {
                 if(userInfoData[value] == null){
+                    console.log("userInfoData balnk field")
                     BlancField = false
                 }
             })
         }
         Object.keys(NewOfferData).forEach(value => {
             if(NewOfferData[value] == ""|| NewOfferData[value] == 0){
+                console.log("offer balnk field", NewOfferData)
                 BlancField = false
             }
         })
         if (BlancField && await CheckAuth()){
-            console.log("start ",BlancField)
+            console.log("start ", NewOfferData)
             fetch("http://localhost:8080/newoffer", {
                 method: "POST",
                 mode: "cors",
